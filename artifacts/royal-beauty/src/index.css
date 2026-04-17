@@ -178,7 +178,7 @@
   100% { transform: scale(1.0)  translate(0%, 0%); }
 }
 .ken-burns-out {
-  animation: kenBurnsOut 14s ease-out forwards;
+  animation: kenBurnsOut 11s ease-out forwards;
 }
 
 /* Shimmer for gold elements */

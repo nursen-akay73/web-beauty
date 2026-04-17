@@ -14,6 +14,7 @@ const heroSlides = [
     overlayOpacity: "0.72",
     objectFit: "cover" as const,
     objectPosition: "center",
+    duration: 6000,
   },
   {
     image: "/images/hero-faces.jpeg",
@@ -26,6 +27,7 @@ const heroSlides = [
     objectFit: "cover" as const,
     objectPosition: "center",
     kenBurnsClass: "ken-burns-out",
+    duration: 11000,
   },
   {
     image: "/images/service-skincare.png",
@@ -37,6 +39,7 @@ const heroSlides = [
     overlayOpacity: "0.72",
     objectFit: "cover" as const,
     objectPosition: "center",
+    duration: 6000,
   },
   {
     image: "/images/service-laser.png",
@@ -48,6 +51,7 @@ const heroSlides = [
     overlayOpacity: "0.72",
     objectFit: "cover" as const,
     objectPosition: "center",
+    duration: 6000,
   },
 ];
 
@@ -56,11 +60,12 @@ export default function Hero() {
   const shimmer = useShimmerTransition();
 
   useEffect(() => {
-    const timer = setInterval(() => {
+    const duration = heroSlides[current].duration ?? 6000;
+    const timer = setTimeout(() => {
       setCurrent((prev) => (prev + 1) % heroSlides.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
+    }, duration);
+    return () => clearTimeout(timer);
+  }, [current]);
 
   const scrollTo = (id: string) => {
     shimmer();
