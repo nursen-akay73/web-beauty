@@ -23,8 +23,8 @@ const heroSlides = [
     subtitle: "",
     caption:
       "Her yüzün kendine has güzelliği vardır. Biz o güzelliği ortaya çıkarıyoruz.",
-    overlayOpacity: "0.30",
-    objectFit: "contain" as const,
+    overlayOpacity: "0.35",
+    objectFit: "cover" as const,
     objectPosition: "center",
     kenBurnsClass: "ken-burns-out",
     duration: 11000,

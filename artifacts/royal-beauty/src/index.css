@@ -172,11 +172,11 @@
 
 /* Ken Burns Out — starts close, slowly pulls back */
 @keyframes kenBurnsOut {
-  0%   { transform: scale(1.0) translate(0%, 0%); }
-  100% { transform: scale(1.0) translate(0%, 0%); }
+  0%   { transform: scale(1.12) translate(0%, 0%); }
+  100% { transform: scale(1.0)  translate(0%, 0%); }
 }
 .ken-burns-out {
-  animation: kenBurnsOut 11s linear forwards;
+  animation: kenBurnsOut 10s ease-out forwards;
 }
 
 /* Shimmer for gold elements */
