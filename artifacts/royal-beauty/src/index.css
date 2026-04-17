@@ -158,7 +158,7 @@
   transform: translateY(0);
 }
 
-/* Ken Burns hero animation */
+/* Ken Burns hero animation — zoom in */
 @keyframes kenBurns {
   0%   { transform: scale(1.0) translate(0%, 0%); }
   25%  { transform: scale(1.08) translate(-1%, -1%); }
@@ -168,6 +168,17 @@
 }
 .ken-burns {
   animation: kenBurns 18s ease-in-out infinite;
+}
+
+/* Ken Burns Out — starts close, slowly pulls back */
+@keyframes kenBurnsOut {
+  0%   { transform: scale(1.22) translate(0%, 0%); }
+  40%  { transform: scale(1.14) translate(0.5%, -0.5%); }
+  70%  { transform: scale(1.07) translate(-0.5%, 0.5%); }
+  100% { transform: scale(1.0)  translate(0%, 0%); }
+}
+.ken-burns-out {
+  animation: kenBurnsOut 14s ease-out forwards;
 }
 
 /* Shimmer for gold elements */

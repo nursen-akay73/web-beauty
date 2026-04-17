@@ -18,13 +18,14 @@ const heroSlides = [
   {
     image: "/images/hero-faces.jpeg",
     title: "Güzelliğinizi",
-    italic: "Keşfedin,",
-    subtitle: "Kendinizi Hissedin",
+    italic: "Keşfedin",
+    subtitle: "",
     caption:
       "Her yüzün kendine has güzelliği vardır. Biz o güzelliği ortaya çıkarıyoruz.",
-    overlayOpacity: "0.45",
-    objectFit: "contain" as const,
+    overlayOpacity: "0.38",
+    objectFit: "cover" as const,
     objectPosition: "center",
+    kenBurnsClass: "ken-burns-out",
   },
   {
     image: "/images/service-skincare.png",
@@ -97,7 +98,7 @@ export default function Hero() {
             <img
               src={slide.image}
               alt="Royal Güzellik"
-              className={`w-full h-full ${slide.objectFit === "contain" ? "object-contain" : "object-cover ken-burns"}`}
+              className={`w-full h-full object-cover ${"kenBurnsClass" in slide ? slide.kenBurnsClass : "ken-burns"}`}
               style={{ objectPosition: slide.objectPosition }}
             />
             {/* Dark overlay */}
@@ -141,8 +142,12 @@ export default function Hero() {
             >
               {slide.title}{" "}
               <span className="italic gold-shimmer">{slide.italic}</span>
-              <br />
-              {slide.subtitle}
+              {slide.subtitle && (
+                <>
+                  <br />
+                  {slide.subtitle}
+                </>
+              )}
             </motion.h1>
           </AnimatePresence>
 
