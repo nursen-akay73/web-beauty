@@ -19,7 +19,12 @@ export default function Footer() {
               Güzelliğinizi lüks bir ritüele dönüştüren, uzman dokunuşların ve son teknolojinin buluştuğu İstanbul'un premium güzellik merkezi.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/70 hover:bg-accent hover:text-white hover:border-accent transition-all duration-300">
+              <a
+                href="https://www.instagram.com/royalguzellik_"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/70 hover:bg-accent hover:text-white hover:border-accent transition-all duration-300"
+              >
                 <Instagram size={18} />
               </a>
               <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/70 hover:bg-accent hover:text-white hover:border-accent transition-all duration-300">
