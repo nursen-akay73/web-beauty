@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useShimmerTransition } from "@/components/page-shimmer";
 
 const navLinks = [
   { href: "#about", label: "Hakkımızda" },
@@ -15,6 +16,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const shimmer = useShimmerTransition();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,10 +28,13 @@ export default function Navbar() {
 
   const scrollTo = (id: string) => {
     setMobileMenuOpen(false);
-    const element = document.querySelector(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    shimmer();
+    setTimeout(() => {
+      const element = document.querySelector(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 180);
   };
 
   return (
