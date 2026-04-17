@@ -23,8 +23,8 @@ const heroSlides = [
     subtitle: "",
     caption:
       "Her yüzün kendine has güzelliği vardır. Biz o güzelliği ortaya çıkarıyoruz.",
-    overlayOpacity: "0.38",
-    objectFit: "cover" as const,
+    overlayOpacity: "0.25",
+    objectFit: "contain" as const,
     objectPosition: "center",
     kenBurnsClass: "ken-burns-out",
     duration: 11000,
@@ -103,7 +103,7 @@ export default function Hero() {
             <img
               src={slide.image}
               alt="Royal Güzellik"
-              className={`w-full h-full object-cover ${"kenBurnsClass" in slide ? slide.kenBurnsClass : "ken-burns"}`}
+              className={`w-full h-full ${slide.objectFit === "contain" ? "object-contain" : "object-cover"} ${"kenBurnsClass" in slide ? slide.kenBurnsClass : "ken-burns"}`}
               style={{ objectPosition: slide.objectPosition }}
             />
             {/* Dark overlay */}
