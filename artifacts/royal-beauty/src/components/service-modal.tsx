@@ -44,7 +44,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     ],
     details:
       "İşlem öncesi uyuşturucu krem ile konfor maksimuma çıkar. Seans süresi 30-45 dakika, 4-6 seans ile belirgin sonuç elde edilir.",
-    image: "/images/service-skincare.png",
+    image: "/images/service-dermapen.png",
   },
   {
     name: "Yosun Peeling",
@@ -60,7 +60,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     ],
     details:
       "Özel formüle edilmiş deniz yosunu maskesi 20-30 dakika etki eder. İşlem sonrası cilt belirgin biçimde pürüzsüzleşir ve aydınlanır.",
-    image: "/images/service-skincare.png",
+    image: "/images/service-peeling.png",
   },
   {
     name: "Hydrafacial",
@@ -76,7 +76,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     ],
     details:
       "Patentli Vortex-Fusion teknolojisi ile ortalama 45-60 dakika sürer. Hassas ciltlerde bile kızarıklık oluşturmaz.",
-    image: "/images/service-skincare.png",
+    image: "/images/service-hydrafacial.png",
   },
   {
     name: "Botoks",
@@ -92,7 +92,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     ],
     details:
       "Tek kullanımlık ince iğnelerle uygulanan botoks işlemi 15-20 dakika sürer. Etki 3-7 gün içinde başlar.",
-    image: "/images/service-skincare.png",
+    image: "/images/service-botoks.png",
     badge: "Medikal",
   },
   {
@@ -109,7 +109,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     ],
     details:
       "FDA onaylı hyalüronik asit jel ile yapılan uygulamalarda etki 12-18 ay sürer. Şişlik 24-48 saat içinde iner.",
-    image: "/images/service-skincare.png",
+    image: "/images/service-dolgu.png",
     badge: "Medikal",
   },
   {
@@ -174,7 +174,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     ],
     details:
       "İşlem öncesi cilde uyuşturucu krem uygulanır. Pigment seçimi yüz analizi ile yapılır. İşlem 2-3 saat sürer.",
-    image: "/images/service-makeup.png",
+    image: "/images/service-kalici-makyaj.png",
   },
 ];
 
