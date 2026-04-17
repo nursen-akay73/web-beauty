@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { X, ZoomIn } from "lucide-react";
 import { useShimmerTransition } from "@/components/page-shimmer";
 
 const heroSlides = [
@@ -53,16 +52,14 @@ const heroSlides = [
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
   const shimmer = useShimmerTransition();
 
   useEffect(() => {
-    if (lightboxOpen) return;
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % heroSlides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, [lightboxOpen]);
+  }, []);
 
   const scrollTo = (id: string) => {
     shimmer();
@@ -86,13 +83,11 @@ export default function Hero() {
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
-            className="absolute inset-0 z-0 cursor-pointer group"
+            className="absolute inset-0 z-0"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1.4, ease: "easeInOut" }}
-            onClick={() => setLightboxOpen(true)}
-            title="Görseli büyütmek için tıkla"
           >
             {/* Background color for contain images */}
             <div
@@ -113,12 +108,6 @@ export default function Hero() {
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#2D0B3F] via-[#3B0A45]/40 to-transparent" />
-
-            {/* Zoom hint on hover */}
-            <div className="absolute top-24 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 bg-black/40 backdrop-blur-sm px-3 py-2 rounded-sm z-20">
-              <ZoomIn size={14} style={{ color: "#D4AF37" }} />
-              <span className="text-xs text-white/80 tracking-wider">Büyüt</span>
-            </div>
           </motion.div>
         </AnimatePresence>
 
@@ -242,72 +231,6 @@ export default function Hero() {
         </motion.div>
       </section>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightboxOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[160] flex items-center justify-center"
-            style={{ backgroundColor: "rgba(20,5,30,0.96)" }}
-            onClick={() => setLightboxOpen(false)}
-          >
-            {/* Gold border frame */}
-            <motion.div
-              initial={{ scale: 0.88, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.92, opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="relative max-w-5xl max-h-[90vh] w-full mx-6 p-1"
-              style={{ border: "1px solid rgba(212,175,55,0.5)" }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={heroSlides[current].image}
-                alt="Royal Güzellik"
-                className="w-full h-full object-contain"
-                style={{ maxHeight: "85vh" }}
-              />
-              {/* Corner decorations */}
-              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2" style={{ borderColor: "#D4AF37" }} />
-              <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2" style={{ borderColor: "#D4AF37" }} />
-              <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2" style={{ borderColor: "#D4AF37" }} />
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2" style={{ borderColor: "#D4AF37" }} />
-            </motion.div>
-
-            {/* Close button */}
-            <button
-              onClick={() => setLightboxOpen(false)}
-              className="absolute top-6 right-6 p-3 rounded-full transition-all duration-300 hover:bg-white/10"
-              style={{ border: "1px solid rgba(212,175,55,0.4)" }}
-            >
-              <X size={22} style={{ color: "#D4AF37" }} />
-            </button>
-
-            {/* Navigation arrows */}
-            <button
-              className="absolute left-4 top-1/2 -translate-y-1/2 p-4 text-white/60 hover:text-[#D4AF37] transition-colors text-3xl font-thin"
-              onClick={(e) => {
-                e.stopPropagation();
-                setCurrent((c) => (c - 1 + heroSlides.length) % heroSlides.length);
-              }}
-            >
-              ‹
-            </button>
-            <button
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-4 text-white/60 hover:text-[#D4AF37] transition-colors text-3xl font-thin"
-              onClick={(e) => {
-                e.stopPropagation();
-                setCurrent((c) => (c + 1) % heroSlides.length);
-              }}
-            >
-              ›
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 }
