@@ -158,7 +158,11 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="uppercase tracking-widest text-sm font-semibold mb-1 text-white">Adres</h4>
-                  <p className="text-white/60 font-light">Nişantaşı, Teşvikiye Cad. No: 123<br />Şişli, İstanbul</p>
+                  <p className="text-white/60 font-light">
+                    Bitlis / Tatvan, Tuğ Mahallesi<br />
+                    Cumhuriyet Bulvarı, Şahper Plaza<br />
+                    Royal Güzellik — Daire No: 5, 3. Kat
+                  </p>
                 </div>
               </div>
 
@@ -169,13 +173,20 @@ export default function Contact() {
                 <div>
                   <h4 className="uppercase tracking-widest text-sm font-semibold mb-1 text-white">Telefon & WhatsApp</h4>
                   <a
-                    href="https://wa.me/905453632026"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="tel:+905384299145"
                     className="font-light transition-colors hover:text-[#D4AF37]"
                     style={{ color: "rgba(255,255,255,0.6)", display: "block" }}
                   >
-                    +90 545 363 20 26
+                    0 (538) 429 91 45
+                  </a>
+                  <a
+                    href="https://wa.me/905453632026"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-light transition-colors hover:text-[#D4AF37] text-sm"
+                    style={{ color: "rgba(255,255,255,0.45)", display: "block", marginTop: "2px" }}
+                  >
+                    +90 545 363 20 26 (WhatsApp)
                   </a>
                 </div>
               </div>
