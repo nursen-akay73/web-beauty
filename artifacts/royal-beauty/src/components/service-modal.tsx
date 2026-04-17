@@ -10,6 +10,7 @@ export type ServiceDetail = {
   details: string;
   image: string;
   leftImage: string;
+  leftTags: string[];
   badge?: string;
 };
 
@@ -30,6 +31,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
       "Soprano Ice SHR teknolojisi sayesinde kıl köklerini yavaş yavaş ısıtarak etkisizleştirir. Seans sayısı kişiye göre 6-8 arasında değişir.",
     image: "/images/service-laser.png",
     leftImage: "/images/left-laser.png",
+    leftTags: ["Ağrısız uygulama", "FDA onaylı cihaz", "6-8 seans yeterli"],
     badge: "En Popüler",
   },
   {
@@ -48,6 +50,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
       "İşlem öncesi uyuşturucu krem ile konfor maksimuma çıkar. Seans süresi 30-45 dakika, 4-6 seans ile belirgin sonuç elde edilir.",
     image: "/images/service-dermapen.png",
     leftImage: "/images/left-dermapen.png",
+    leftTags: ["Kolajen üretimini artırır", "30-45 dk seans", "Doğal yenileme"],
   },
   {
     name: "Yosun Peeling",
@@ -65,6 +68,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
       "Özel formüle edilmiş deniz yosunu maskesi 20-30 dakika etki eder. İşlem sonrası cilt belirgin biçimde pürüzsüzleşir ve aydınlanır.",
     image: "/images/service-peeling.png",
     leftImage: "/images/left-peeling.png",
+    leftTags: ["Derin detoks", "Mineral & iyot zengin", "Anında ışıltı"],
   },
   {
     name: "Hydrafacial",
@@ -82,6 +86,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
       "Patentli Vortex-Fusion teknolojisi ile ortalama 45-60 dakika sürer. Hassas ciltlerde bile kızarıklık oluşturmaz.",
     image: "/images/service-hydrafacial.png",
     leftImage: "/images/left-hydrafacial.png",
+    leftTags: ["Tek seansta 4 işlem", "Kızarıklık bırakmaz", "45-60 dk"],
   },
   {
     name: "Botoks",
@@ -99,6 +104,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
       "Tek kullanımlık ince iğnelerle uygulanan botoks işlemi 15-20 dakika sürer. Etki 3-7 gün içinde başlar.",
     image: "/images/service-botoks.png",
     leftImage: "/images/left-botoks.png",
+    leftTags: ["15-20 dk işlem", "4-6 ay kalıcı", "Sıfır iyileşme süresi"],
     badge: "Medikal",
   },
   {
@@ -117,6 +123,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
       "FDA onaylı hyalüronik asit jel ile yapılan uygulamalarda etki 12-18 ay sürer. Şişlik 24-48 saat içinde iner.",
     image: "/images/service-dolgu.png",
     leftImage: "/images/left-dolgu.png",
+    leftTags: ["12-18 ay etki", "Hyalüronik asit", "Doğal kontur"],
     badge: "Medikal",
   },
   {
@@ -135,6 +142,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
       "Bakım seansı öncesinde detaylı cilt analizi yapılır. Seanslar 60-90 dakika sürer.",
     image: "/images/service-skincare.png",
     leftImage: "/images/left-skincare.png",
+    leftTags: ["Cilt analiziyle başlar", "Medikal ürünler", "60-90 dk seans"],
   },
   {
     name: "Saç Tasarım",
@@ -152,6 +160,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
       "Saç bakım randevularında önce saç analizi yapılır, ardından kişiye özel yöntem belirlenir.",
     image: "/images/service-hair.png",
     leftImage: "/images/left-hair.png",
+    leftTags: ["Kişiye özel stil", "Keratin & protein bakımı", "Hasar onarımı"],
   },
   {
     name: "Makyaj",
@@ -169,6 +178,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
       "Makyaj randevularında kıyafet ve konsept paylaşmanız önerilir. İşlem süresi 60-90 dakikadır.",
     image: "/images/service-makeup.png",
     leftImage: "/images/left-makeup.png",
+    leftTags: ["Gelin makyajı uzmanı", "HD fotoğraf uyumlu", "Transfer yapmaz formül"],
   },
   {
     name: "Kalıcı Makyaj",
@@ -186,6 +196,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
       "İşlem öncesi cilde uyuşturucu krem uygulanır. Pigment seçimi yüz analizi ile yapılır. İşlem 2-3 saat sürer.",
     image: "/images/service-kalici-makyaj.png",
     leftImage: "/images/left-kalici.png",
+    leftTags: ["6-12 ay kalıcı", "Steril ekipman", "Kaş · Eyeliner · Dudak"],
   },
 ];
 
@@ -298,28 +309,43 @@ export default function ServiceModal({ service, onClose, onBook }: ServiceModalP
                 <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2" style={{ borderColor: "#D4AF37" }} />
               </motion.div>
 
-              {/* Bottom label */}
+              {/* Bottom — service name + tags */}
               <motion.div
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-                className="absolute bottom-12 left-0 right-0 text-center"
+                transition={{ delay: 0.45, duration: 0.5 }}
+                className="absolute bottom-0 left-0 right-0 px-6 pb-7"
+                style={{ background: "linear-gradient(to top, rgba(10,2,20,0.85) 0%, transparent 100%)" }}
               >
-                <p className="text-[10px] uppercase tracking-[0.4em] mb-1" style={{ color: "#D4AF37" }}>Royal Güzellik</p>
-                <p className="font-serif text-white/80 text-lg">{service.name}</p>
+                <p className="text-[9px] uppercase tracking-[0.4em] mb-1" style={{ color: "#D4AF37" }}>Royal Güzellik</p>
+                <p className="font-serif text-white/90 text-base mb-3">{service.name}</p>
+                <div className="flex flex-col gap-1.5">
+                  {service.leftTags.map((tag, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.52 + i * 0.08, duration: 0.4 }}
+                      className="flex items-center gap-2"
+                    >
+                      <div className="w-1 h-1 rotate-45 shrink-0" style={{ backgroundColor: "#D4AF37" }} />
+                      <span className="text-[11px] font-light tracking-wide" style={{ color: "rgba(245,245,245,0.82)" }}>{tag}</span>
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
 
-              {/* Top label */}
+              {/* Top diamond line */}
               <motion.div
-                initial={{ opacity: 0, y: -12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-                className="absolute top-10 left-0 right-0 flex justify-center"
+                initial={{ opacity: 0, scaleX: 0 }}
+                animate={{ opacity: 1, scaleX: 1 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+                className="absolute top-8 left-0 right-0 flex justify-center"
               >
-                <div className="flex items-center gap-3">
-                  <div className="h-[1px] w-8" style={{ backgroundColor: "rgba(212,175,55,0.4)" }} />
+                <div className="flex items-center gap-2">
+                  <div className="h-[1px] w-6" style={{ backgroundColor: "rgba(212,175,55,0.35)" }} />
                   <div className="w-1.5 h-1.5 rotate-45" style={{ backgroundColor: "#D4AF37" }} />
-                  <div className="h-[1px] w-8" style={{ backgroundColor: "rgba(212,175,55,0.4)" }} />
+                  <div className="h-[1px] w-6" style={{ backgroundColor: "rgba(212,175,55,0.35)" }} />
                 </div>
               </motion.div>
             </div>
