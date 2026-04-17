@@ -23,7 +23,7 @@ const heroSlides = [
     subtitle: "",
     caption:
       "Her yüzün kendine has güzelliği vardır. Biz o güzelliği ortaya çıkarıyoruz.",
-    overlayOpacity: "0.25",
+    overlayOpacity: "0.30",
     objectFit: "contain" as const,
     objectPosition: "center",
     kenBurnsClass: "ken-burns-out",
@@ -95,17 +95,33 @@ export default function Hero() {
             exit={{ opacity: 0 }}
             transition={{ duration: 1.4, ease: "easeInOut" }}
           >
-            {/* Background color for contain images */}
-            <div
-              className="absolute inset-0"
-              style={{ backgroundColor: slide.objectFit === "contain" ? "#2D0B3F" : "transparent" }}
-            />
-            <img
-              src={slide.image}
-              alt="Royal Güzellik"
-              className={`w-full h-full ${slide.objectFit === "contain" ? "object-contain" : "object-cover"} ${"kenBurnsClass" in slide ? slide.kenBurnsClass : "ken-burns"}`}
-              style={{ objectPosition: slide.objectPosition }}
-            />
+            {slide.objectFit === "contain" ? (
+              /* Blur-background technique: blurred cover behind, sharp contain in front */
+              <>
+                {/* Blurred background — same image fills the screen */}
+                <img
+                  src={slide.image}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{ filter: "blur(18px) brightness(0.45)", transform: "scale(1.08)" }}
+                />
+                {/* Sharp image — contain, all faces visible */}
+                <img
+                  src={slide.image}
+                  alt="Royal Güzellik"
+                  className={`relative w-full h-full object-contain ${"kenBurnsClass" in slide ? slide.kenBurnsClass : "ken-burns"}`}
+                  style={{ objectPosition: slide.objectPosition }}
+                />
+              </>
+            ) : (
+              <img
+                src={slide.image}
+                alt="Royal Güzellik"
+                className={`w-full h-full object-cover ${"kenBurnsClass" in slide ? slide.kenBurnsClass : "ken-burns"}`}
+                style={{ objectPosition: slide.objectPosition }}
+              />
+            )}
             {/* Dark overlay */}
             <div
               className="absolute inset-0"
