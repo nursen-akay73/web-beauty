@@ -9,6 +9,7 @@ export type ServiceDetail = {
   benefits: string[];
   details: string;
   image: string;
+  leftImage: string;
   badge?: string;
 };
 
@@ -28,6 +29,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     details:
       "Soprano Ice SHR teknolojisi sayesinde kıl köklerini yavaş yavaş ısıtarak etkisizleştirir. Seans sayısı kişiye göre 6-8 arasında değişir.",
     image: "/images/service-laser.png",
+    leftImage: "/images/left-laser.png",
     badge: "En Popüler",
   },
   {
@@ -45,6 +47,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     details:
       "İşlem öncesi uyuşturucu krem ile konfor maksimuma çıkar. Seans süresi 30-45 dakika, 4-6 seans ile belirgin sonuç elde edilir.",
     image: "/images/service-dermapen.png",
+    leftImage: "/images/left-dermapen.png",
   },
   {
     name: "Yosun Peeling",
@@ -61,6 +64,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     details:
       "Özel formüle edilmiş deniz yosunu maskesi 20-30 dakika etki eder. İşlem sonrası cilt belirgin biçimde pürüzsüzleşir ve aydınlanır.",
     image: "/images/service-peeling.png",
+    leftImage: "/images/left-peeling.png",
   },
   {
     name: "Hydrafacial",
@@ -77,6 +81,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     details:
       "Patentli Vortex-Fusion teknolojisi ile ortalama 45-60 dakika sürer. Hassas ciltlerde bile kızarıklık oluşturmaz.",
     image: "/images/service-hydrafacial.png",
+    leftImage: "/images/left-hydrafacial.png",
   },
   {
     name: "Botoks",
@@ -93,6 +98,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     details:
       "Tek kullanımlık ince iğnelerle uygulanan botoks işlemi 15-20 dakika sürer. Etki 3-7 gün içinde başlar.",
     image: "/images/service-botoks.png",
+    leftImage: "/images/left-botoks.png",
     badge: "Medikal",
   },
   {
@@ -110,6 +116,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     details:
       "FDA onaylı hyalüronik asit jel ile yapılan uygulamalarda etki 12-18 ay sürer. Şişlik 24-48 saat içinde iner.",
     image: "/images/service-dolgu.png",
+    leftImage: "/images/left-dolgu.png",
     badge: "Medikal",
   },
   {
@@ -127,6 +134,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     details:
       "Bakım seansı öncesinde detaylı cilt analizi yapılır. Seanslar 60-90 dakika sürer.",
     image: "/images/service-skincare.png",
+    leftImage: "/images/left-skincare.png",
   },
   {
     name: "Saç Tasarım",
@@ -143,6 +151,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     details:
       "Saç bakım randevularında önce saç analizi yapılır, ardından kişiye özel yöntem belirlenir.",
     image: "/images/service-hair.png",
+    leftImage: "/images/left-hair.png",
   },
   {
     name: "Makyaj",
@@ -159,6 +168,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     details:
       "Makyaj randevularında kıyafet ve konsept paylaşmanız önerilir. İşlem süresi 60-90 dakikadır.",
     image: "/images/service-makeup.png",
+    leftImage: "/images/left-makeup.png",
   },
   {
     name: "Kalıcı Makyaj",
@@ -175,6 +185,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     details:
       "İşlem öncesi cilde uyuşturucu krem uygulanır. Pigment seçimi yüz analizi ile yapılır. İşlem 2-3 saat sürer.",
     image: "/images/service-kalici-makyaj.png",
+    leftImage: "/images/left-kalici.png",
   },
 ];
 
@@ -238,7 +249,7 @@ export default function ServiceModal({ service, onClose, onBook }: ServiceModalP
                 className="absolute overflow-hidden"
                 style={{ width: "72%", height: "62%", border: "1px solid rgba(212,175,55,0.2)" }}
               >
-                <img src={service.image} alt="" className="w-full h-full object-cover" style={{ filter: "brightness(0.4) saturate(0.6)" }} />
+                <img src={service.leftImage} alt="" className="w-full h-full object-cover" style={{ filter: "brightness(0.4) saturate(0.6)" }} />
               </motion.div>
 
               {/* Frame 2 — middle */}
@@ -249,7 +260,7 @@ export default function ServiceModal({ service, onClose, onBook }: ServiceModalP
                 className="absolute overflow-hidden"
                 style={{ width: "72%", height: "62%", border: "1px solid rgba(212,175,55,0.35)" }}
               >
-                <img src={service.image} alt="" className="w-full h-full object-cover" style={{ filter: "brightness(0.55) saturate(0.75)" }} />
+                <img src={service.leftImage} alt="" className="w-full h-full object-cover" style={{ filter: "brightness(0.55) saturate(0.75)" }} />
               </motion.div>
 
               {/* Frame 1 — front (main image) */}
@@ -261,7 +272,7 @@ export default function ServiceModal({ service, onClose, onBook }: ServiceModalP
                 style={{ width: "72%", height: "62%", border: "2px solid rgba(212,175,55,0.6)" }}
               >
                 <motion.img
-                  src={service.image}
+                  src={service.leftImage}
                   alt={service.name}
                   className="w-full h-full object-cover"
                   initial={{ scale: 1.08 }}
