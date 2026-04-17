@@ -179,7 +179,7 @@ export default function Hero() {
               onClick={() => scrollTo("#contact")}
               size="lg"
               style={{ backgroundColor: "#D4AF37", color: "#3B0A45" }}
-              className="royal-btn hover:opacity-90 px-14 py-7 uppercase tracking-widest text-sm font-bold shadow-lg"
+              className="royal-btn btn-randevu-shimmer hover:opacity-90 px-14 py-7 uppercase tracking-widest text-sm font-bold shadow-lg"
             >
               Randevu Oluştur
             </Button>
