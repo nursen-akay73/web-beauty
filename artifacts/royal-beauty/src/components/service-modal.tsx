@@ -248,6 +248,8 @@ export default function ServiceModal({ service, onClose, onBook }: ServiceModalP
                   maxHeight: "90vh",
                   border: "1px solid rgba(212,175,55,0.35)",
                 }}
+                onClick={(e) => e.stopPropagation()}
+                onPointerDown={(e) => e.stopPropagation()}
               >
                 {/* Gold-purple top bar */}
                 <div className="h-1.5 shrink-0" style={{ background: "linear-gradient(90deg, #3B0A45 0%, #D4AF37 45%, #6A0DAD 100%)" }} />
@@ -289,7 +291,10 @@ export default function ServiceModal({ service, onClose, onBook }: ServiceModalP
                 </div>
 
                 {/* Scrollable body */}
-                <div className="overflow-y-auto flex-1 px-7 py-5">
+                <div
+                  className="overflow-y-auto flex-1 px-7 py-5"
+                  style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y", overscrollBehavior: "contain" }}
+                >
                   {/* Header */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
