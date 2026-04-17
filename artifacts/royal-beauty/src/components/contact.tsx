@@ -179,15 +179,6 @@ export default function Contact() {
                   >
                     0 (538) 429 91 45
                   </a>
-                  <a
-                    href="https://wa.me/905453632026"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-light transition-colors hover:text-[#D4AF37] text-sm"
-                    style={{ color: "rgba(255,255,255,0.45)", display: "block", marginTop: "2px" }}
-                  >
-                    +90 545 363 20 26 (WhatsApp)
-                  </a>
                 </div>
               </div>
 
@@ -304,13 +295,20 @@ export default function Contact() {
                   )}
                 />
 
-                <Button
-                  type="submit"
-                  className="royal-btn w-full uppercase tracking-widest py-6 mt-4 font-bold"
-                  style={{ backgroundColor: "#3B0A45", color: "#D4AF37" }}
-                >
-                  Gönder
-                </Button>
+                <div className="flex justify-center mt-6">
+                  <Button
+                    type="submit"
+                    className="royal-btn btn-randevu-shimmer uppercase tracking-[0.25em] px-16 py-4 font-bold text-sm shadow-lg hover:shadow-xl transition-shadow duration-300"
+                    style={{
+                      backgroundColor: "#3B0A45",
+                      color: "#D4AF37",
+                      border: "1px solid rgba(212,175,55,0.4)",
+                      minWidth: "220px",
+                    }}
+                  >
+                    Gönder
+                  </Button>
+                </div>
               </form>
             </Form>
           </motion.div>
