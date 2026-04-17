@@ -93,7 +93,7 @@ export default function SopranoSection() {
               </p>
 
               <p className="text-white/65 font-light leading-relaxed mb-10 max-w-lg">
-                Dünya çapında kliniklerin güvendiği Soprano Titanium, üç dalga boyunu tek bir kafada birleştirerek lazer epilasyonda benzeri görülmemiş bir etkinlik ve güvenlik sunuyor. Royal Güzellik olarak bu teknolojiyi İstanbul'un kalbinde sizinle buluşturuyoruz.
+                Dünya çapında kliniklerin güvendiği Soprano Titanium, üç dalga boyunu tek bir kafada birleştirerek lazer epilasyonda benzeri görülmemiş bir etkinlik ve güvenlik sunuyor. Royal Güzellik olarak bu teknolojiyi sizinle buluşturuyoruz.
               </p>
 
               {/* Award badge */}

@@ -57,7 +57,7 @@ export default function Values() {
             </div>
             <h3 className="text-xl font-serif text-primary mb-4">Sertifikalı Uzmanlık</h3>
             <p className="text-muted-foreground font-light leading-relaxed">
-              İstanbul Royal Güzellik Akademisi sertifikalı uzman estetisyenlerimiz, alanındaki en son yenilikleri takip ederek size en güvenli ve etkili uygulamaları sunar.
+              Royal Güzellik Akademisi sertifikalı uzman estetisyenlerimiz, alanındaki en son yenilikleri takip ederek size en güvenli ve etkili uygulamaları sunar.
             </p>
           </motion.div>
 

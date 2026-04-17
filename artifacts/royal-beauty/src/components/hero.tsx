@@ -10,7 +10,7 @@ const heroSlides = [
     italic: "Kraliyet",
     subtitle: "İhtişamıyla Taçlandırın",
     caption:
-      "Leyla Akay vizyonuyla, Soprano Ice teknolojisi ve profesyonel dokunuşların buluştuğu İstanbul'un en seçkin güzellik merkezi.",
+      "Leyla Akay vizyonuyla, Soprano Ice teknolojisi ve profesyonel dokunuşların buluştuğu en seçkin güzellik merkezi.",
     overlayOpacity: "0.72",
     objectFit: "cover" as const,
     objectPosition: "center",

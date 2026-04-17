@@ -86,8 +86,8 @@ export default function About() {
             </div>
 
             <h2 className="text-3xl md:text-5xl font-serif mb-8 leading-tight" style={{ color: "#3B0A45" }}>
-              İstanbul'un <br />
-              <span className="italic" style={{ color: "#6A0DAD" }}>Kraliyet</span> Standardı
+              Royal <br />
+              <span className="italic" style={{ color: "#6A0DAD" }}>Güzellik</span> Standardı
             </h2>
 
             <p className="leading-relaxed mb-5 font-light" style={{ color: "#555" }}>
@@ -95,7 +95,7 @@ export default function About() {
             </p>
 
             <p className="leading-relaxed mb-5 font-light" style={{ color: "#555" }}>
-              Kurucumuz ve uzmanımız <strong style={{ color: "#3B0A45", fontWeight: 600 }}>Leyla Akay</strong>, İstanbul Royal Güzellik Akademisi'nde güzellik ve bakım eğitimini tamamlayarak müşterilerine zengin deneyim sunmaktadır. MEB onaylı sertifika ve diplomalara sahip olan Leyla Akay, özellikle saç kesimi ve tasarımında olağanüstü yetenek sergilemektedir.
+              Kurucumuz ve uzmanımız <strong style={{ color: "#3B0A45", fontWeight: 600 }}>Leyla Akay</strong>, Royal Güzellik Akademisi'nde güzellik ve bakım eğitimini tamamlayarak müşterilerine zengin deneyim sunmaktadır. MEB onaylı sertifika ve diplomalara sahip olan Leyla Akay, özellikle saç kesimi ve tasarımında olağanüstü yetenek sergilemektedir.
             </p>
 
             {/* Expertise list */}

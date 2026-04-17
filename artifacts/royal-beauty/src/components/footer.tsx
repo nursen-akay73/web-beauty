@@ -16,7 +16,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-primary-foreground/60 font-light text-sm leading-relaxed mb-8">
-              Güzelliğinizi lüks bir ritüele dönüştüren, uzman dokunuşların ve son teknolojinin buluştuğu İstanbul'un premium güzellik merkezi.
+              Güzelliğinizi lüks bir ritüele dönüştüren, uzman dokunuşların ve son teknolojinin buluştuğu premium güzellik merkezi.
             </p>
             <div className="flex gap-4">
               <a
