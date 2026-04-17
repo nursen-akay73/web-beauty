@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, CheckCircle2, ArrowRight, Star } from "lucide-react";
+import { X, CheckCircle2, ArrowRight, Star, Clock, Sparkles } from "lucide-react";
 
 export type ServiceDetail = {
   name: string;
@@ -58,73 +59,58 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
       "Anında ışıltı ve tazelik hissi",
     ],
     details:
-      "Seans 45-60 dakika sürer. Yosun bazlı özel peeling karışımı uygulandıktan sonra masaj ile cildin derinliklerine işlenmesi sağlanır. Ayda 1 kez tekrarlayan bakım için idealdir.",
+      "Özel formüle edilmiş deniz yosunu maskesi 20-30 dakika boyunca etki eder. İşlem sonrası cilt belirgin biçimde pürüzsüzleşir ve aydınlanır. Aylık tekrar önerilir.",
     image: "/images/service-skincare.png",
   },
   {
     name: "Hydrafacial",
-    tagline: "Cilt Bakımında Yeni Nesil Deneyim",
+    tagline: "Anlık Parlaklık & Derin Nem",
     description:
-      "Hydrafacial, 3 adımda derin temizlik, eksfoliasyon ve nem dolumu yapan dünyaca ünlü bir cilt bakım sistemidir. Seansın hemen ardından gözle görülür bir ışıltı ve yenilenme hissi sunar.",
+      "Hydrafacial; temizlik, peeling, ekstraksiyon ve nem serumlarını tek seansta birleştiren çok adımlı bir tedavidir. İşlem sonrası anında görünür bir aydınlık ve dolgunluk hissi verir.",
     benefits: [
+      "Anlık görünür ışıltı",
       "Gözenek temizliği ve sıkılaştırma",
-      "Cilt yüzeyini pürüzsüzleştirir",
-      "Nem ve antioksidan dolumu",
-      "Anında fark yaratan sonuç",
-      "Kimyasal içermez, doğal",
+      "Kolajen sentezini destekler",
+      "Tüm cilt tipleri için güvenli",
+      "Makyaj sonrası bile uygulanabilir",
     ],
     details:
-      "3 aşamalı uygulama; Cleanse & Peel (temizlik ve eksfoliasyon), Extract & Hydrate (derin temizlik ve nemlendirme), Fuse & Protect (antioksidan koruması). Seans süresi 60 dakika.",
+      "Patentli Vortex-Fusion teknolojisi ile uygulanan bu işlem ortalama 45-60 dakika sürer. Hassas ciltlerde bile kızarıklık veya rahatsızlık oluşturmaz. Haftada bir kez uygulanabilir.",
     image: "/images/service-skincare.png",
-    badge: "Yeni",
   },
   {
-    name: "Kirpik Lifting",
-    tagline: "Doğal Kirpiklerinizi Vurgulayın",
+    name: "Botoks",
+    tagline: "Dinamik Kırışıklıklara Zarafet",
     description:
-      "Kirpik lifting, kendi kirpiklerinizi kaldırarak doğal ama dramatik bir etki yaratır. Maskara gerektirmeden aylarca süren kıvrım ve uzunluk hissi sağlar.",
+      "Onaylı nörotoksin formülasyonları ile dinamik kırışıklıkları gideren, yüz hatlarını yumuşatan ve doğal bir genç görünüm sunan tıbbi estetik uygulaması.",
     benefits: [
-      "Kirpikleri doğal yollarla kaldırır",
-      "6-8 hafta kalıcılık",
-      "Maskara gerektirmez",
-      "Gözlere derinlik katar",
-      "Hızlı 45 dakikalık uygulama",
+      "Alın ve gözaltı çizgilerini giderir",
+      "Doğal ve gergin olmayan sonuç",
+      "Hızlı işlem, sıfır iyileşme süresi",
+      "Sonuçlar 4-6 ay kalıcı",
+      "Uzman hekim uygulaması",
     ],
     details:
-      "Silikon aparatlar yardımıyla kirpikler kaldırılır, kalıcı dalga solüsyonu ve besleyici bakım serumu uygulanır. İşlem tamamen ağrısızdır ve seans sonrası hemen normal hayata dönülür.",
-    image: "/images/service-makeup.png",
-  },
-  {
-    name: "Saç Vitamin İşlemi",
-    tagline: "Saç Kökünden Gelen Güç",
-    description:
-      "Saç derisine uygulanan vitamin infüzyonu, saç köklerini besler, dökülmeyi azaltır ve saçların daha güçlü, parlak büyümesini sağlar. Yoğun bakım formülü ile saçınız içten dışa canlanır.",
-    benefits: [
-      "Saç dökülmesini azaltır",
-      "Kök güçlendirme ve canlandırma",
-      "Parlaklık ve yumuşaklık",
-      "Saç büyümesini hızlandırır",
-      "Tüm saç tiplerine uygun",
-    ],
-    details:
-      "Mezoterapiye benzer şekilde ince iğneler ya da dermaroller aracılığıyla saç derisi vitaminleri (biotin, peptid, mineral kompleksi) ile infüze edilir. 4-6 seans ile belirgin sonuç.",
-    image: "/images/service-hair.png",
-  },
-  {
-    name: "Cilt Gençleştirme",
-    tagline: "RF & LED Teknoloji ile Genç Cilt",
-    description:
-      "Radyo frekansı (RF) ve LED ışık terapisi kombinasyonu ile cilt sıkılaştırma, kırışıklık azaltma ve gençleştirme. Cerrahi müdahale gerektirmeyen, doğal ve güvenli bir tedavi.",
-    benefits: [
-      "Cilt sıkılaştırma ve kaldırma etkisi",
-      "Kolajen üretimini uyarır",
-      "İnce çizgi ve kırışıklık azaltma",
-      "Yüz konturunu belirginleştirir",
-      "Cerrahi olmayan, ağrısız",
-    ],
-    details:
-      "RF enerji cilt altı dokusunu ısıtarak kolajen liflerinin kasılmasını sağlar; LED terapisi ise hücre yenilenmesini ve leke azalmayı destekler. Her ay 1 seans ile yaşlanma belirtilerini belirgin biçimde azaltır.",
+      "Tek kullanımlık ince iğnelerle uygulanan botoks işlemi 15-20 dakika sürer. Etki 3-7 gün içinde başlar, 2 hafta içinde tam sonuç görülür. Doğal mimiklerinizi koruyan miktarlarla uygulanır.",
     image: "/images/service-skincare.png",
+    badge: "Medikal",
+  },
+  {
+    name: "Dolgu",
+    tagline: "Hacim & Kontur Sanatı",
+    description:
+      "Hyalüronik asit bazlı dolgu uygulamaları ile dudak, yanak, çene ve elmacık kemiklerinde hacim artışı ve yüz konturlaması sağlanır.",
+    benefits: [
+      "Anlık hacim ve dolgunluk",
+      "Doğal görünüm, uzun ömürlü sonuç",
+      "Dudak, yanak, nazolabial çizgiler",
+      "Biyolojik olarak uyumlu formül",
+      "Uzman hekim denetiminde uygulama",
+    ],
+    details:
+      "FDA onaylı hyalüronik asit jel ile yapılan uygulamalarda lokal anestezi kremi konfor sağlar. Etki 12-18 ay sürer. Sonuçlar hemen görülür, şişlik 24-48 saat içinde iner.",
+    image: "/images/service-skincare.png",
+    badge: "Medikal",
   },
   {
     name: "Cilt Bakımı",
@@ -133,56 +119,93 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
       "Cilt tipinize ve ihtiyaçlarınıza özel tasarlanmış medikal kalitede cilt bakım protokolleri. Uzman estetisyenlerimiz en doğru ürünleri ve yöntemleri seçerek cildinizi içeriden dışarıya yeniler.",
     benefits: [
       "Cilt tipine özel protokol",
-      "Medikal kalite ürünler",
-      "Uzman estetisyen uygulaması",
-      "Derin nemlendirme ve beslenme",
-      "Görünür yenilenme ve ışıltı",
+      "Medikal kalite ürün seçimi",
+      "Derin nem ve antioksidan desteği",
+      "Leke ve ton eşitsizliği tedavisi",
+      "Uzun vadeli cilt sağlığı",
     ],
     details:
-      "Bakım öncesi cilt analizi yapılır, ardından temizlik, tonik, serum, maske ve nemlendirici aşamalarıyla kişisel bir protokol uygulanır. Düzenli aylık bakımla kalıcı iyileşme sağlanır.",
+      "Bakım seansı öncesinde detaylı cilt analizi yapılır. Seanslar 60-90 dakika sürer ve haftada ya da ayda bir tekrarlanması önerilir.",
     image: "/images/service-skincare.png",
   },
   {
-    name: "Dolgu İşlemleri",
-    tagline: "Hyalüronik Asit ile Doğal Kontur",
+    name: "Saç Tasarım",
+    tagline: "Kraliyet Dokunuşu",
     description:
-      "Dudak dolgusu, yüz konturlama ve derin kırışıklık dolgusu için FDA onaylı hyalüronik asit bazlı ürünler kullanılır. Doğal ve genç bir görünüm için uzman doktor gözetiminde uygulama.",
+      "Saç kesimi, renklendirme, ombre, keratin bakım ve vitamin işlemleri ile saçlarınıza özgün bir stil kazandırıyoruz. Uzman saç stilistlerimiz her saç tipine özel çözümler sunar.",
     benefits: [
-      "Anında belirgin sonuç",
-      "Doğal ve orantılı görünüm",
-      "FDA onaylı hyalüronik asit",
-      "9-18 ay kalıcılık",
-      "Minimal iyileşme süreci",
+      "Kişiye özel stil danışmanlığı",
+      "Profesyonel renk uygulamaları",
+      "Keratin ve protein bakımı",
+      "Hasar onarımı tedavileri",
+      "Kalıcı şekillendirme seçenekleri",
     ],
     details:
-      "Uyuşturucu krem ile rahatsızlık minimize edilir. Uzman uygulayıcı tarafından ince kanüller ile yerleştirilir. Seans 30-45 dakika sürer, uygulama sonrası hafif şişlik 24-48 saat içinde geçer.",
+      "Saç bakım randevularında önce saç analizi yapılır, ardından kişiye özel ürün ve yöntem belirlenir. İşlem süresi saç uzunluğu ve uygulamaya göre değişir.",
+    image: "/images/service-hair.png",
+  },
+  {
+    name: "Makyaj",
+    tagline: "Sanatsal Dokunuş",
+    description:
+      "Özel günleriniz için porselen makyaj, gelin makyajı ve günlük makyaj uygulamaları. Yüz hatlarınızı öne çıkaran, uzun süre kalıcı profesyonel makyaj deneyimi.",
+    benefits: [
+      "Gelin ve özel gün makyajı",
+      "Kalıcı ve transfer yapmaz formül",
+      "HD fotoğraf uyumlu makyaj",
+      "Kişilik ve stil analizine göre",
+      "Profesyonel ürün markaları",
+    ],
+    details:
+      "Makyaj randevularında kıyafet ve konsept paylaşmanız önerilir. İşlem süresi 60-90 dakikadır. Yoğun talep dönemlerinde önceden randevu alınması gerekmektedir.",
     image: "/images/service-makeup.png",
   },
   {
-    name: "Botoks İşlemleri",
-    tagline: "Mimik Çizgilerine Profesyonel Çözüm",
+    name: "Kalıcı Makyaj",
+    tagline: "Uyan, Hazır Ol",
     description:
-      "Botulinum toksin enjeksiyonu ile alın çizgileri, göz kırışıklıkları ve gülümseme çizgilerini yumuşatarak daha genç ve dinlenmiş bir görünüm elde edin. Hızlı, güvenli ve etkili.",
+      "Kaş, eyeliner ve dudak konturunda kalıcı makyaj uygulamaları. Özel pigmentler ve steril ekipmanlarla aylarca süren doğal görünüm.",
     benefits: [
-      "Alın ve göz çevresi çizgileri azalır",
-      "3-7 gün içinde etkisi görülür",
-      "4-6 ay kalıcılık",
-      "Hızlı 20 dakikalık işlem",
-      "Sertifikalı hekim uygulaması",
+      "Kaş, eyeliner, dudak rengi",
+      "Doğal ve hafif görünüm",
+      "Suya ve tere dayanıklı",
+      "6-12 ay kalıcılık",
+      "Steril ve hijyenik uygulama",
     ],
     details:
-      "Botoks, seçilen kas gruplarına mikro dozda enjekte edilerek kasın geçici olarak gevşemesini sağlar. Mimik kasılmaları ile oluşan dinamik çizgiler görünür biçimde yumuşar. İzin süreci gerektirmez.",
-    image: "/images/service-skincare.png",
+      "İşlem öncesi cilde uyuşturucu krem uygulanır. Pigment seçimi yüz analizi ile birlikte yapılır. İşlem 2-3 saat sürer; 4-6 hafta sonra rötuş seansı ile sonuç kalıcılaştırılır.",
+    image: "/images/service-makeup.png",
   },
 ];
 
-type Props = {
+interface ServiceDrawerProps {
   service: ServiceDetail | null;
   onClose: () => void;
   onBook: () => void;
+}
+
+const stagger = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.07 },
+  },
 };
 
-export default function ServiceModal({ service, onClose, onBook }: Props) {
+const fadeUp = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+};
+
+export default function ServiceModal({ service, onClose, onBook }: ServiceDrawerProps) {
+  useEffect(() => {
+    if (service) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [service]);
+
   return (
     <AnimatePresence>
       {service && (
@@ -193,150 +216,164 @@ export default function ServiceModal({ service, onClose, onBook }: Props) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm"
+            transition={{ duration: 0.35 }}
+            className="fixed inset-0 z-[100]"
+            style={{ backgroundColor: "rgba(20,5,30,0.72)", backdropFilter: "blur(4px)" }}
             onClick={onClose}
           />
 
-          {/* Modal */}
-          <motion.div
-            key="modal"
-            initial={{ opacity: 0, y: 60, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 40, scale: 0.97 }}
-            transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="fixed inset-0 z-[101] flex items-center justify-center p-4 pointer-events-none"
+          {/* Drawer panel — slides in from right */}
+          <motion.aside
+            key="drawer"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", stiffness: 340, damping: 36, mass: 1 }}
+            className="fixed top-0 right-0 h-full z-[110] flex flex-col shadow-2xl"
+            style={{
+              width: "min(520px, 100vw)",
+              backgroundColor: "#F5F5F5",
+            }}
           >
-            <div
-              className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto pointer-events-auto shadow-2xl"
-              style={{ backgroundColor: "#F5F5F5" }}
-            >
+            {/* Gold top accent line */}
+            <div className="h-1 w-full shrink-0" style={{ background: "linear-gradient(90deg, #3B0A45, #D4AF37, #3B0A45)" }} />
+
+            {/* Hero image — fixed height */}
+            <div className="relative h-52 shrink-0 overflow-hidden">
+              <img
+                src={service.image}
+                alt={service.name}
+                className="w-full h-full object-cover"
+                style={{ filter: "brightness(0.75)" }}
+              />
+              {/* Gradient overlay */}
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #F5F5F5 0%, rgba(245,245,245,0.1) 70%, transparent 100%)" }} />
+
+              {/* Badge */}
+              {service.badge && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1 text-xs font-bold uppercase tracking-widest"
+                  style={{ backgroundColor: "#D4AF37", color: "#3B0A45" }}
+                >
+                  <Star size={10} fill="currentColor" /> {service.badge}
+                </motion.div>
+              )}
+
               {/* Close button */}
               <button
                 onClick={onClose}
-                className="absolute top-5 right-5 z-10 w-10 h-10 flex items-center justify-center border border-gray-200 hover:border-[#3B0A45] hover:bg-[#3B0A45] hover:text-white transition-all duration-300"
-                style={{ color: "#3B0A45" }}
+                className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center transition-all duration-200 hover:bg-white/20"
+                style={{ border: "1px solid rgba(255,255,255,0.5)", color: "white" }}
               >
-                <X size={18} />
+                <X size={16} />
               </button>
+            </div>
 
-              {/* Hero image */}
-              <div className="relative h-52 md:h-72 overflow-hidden">
-                <img
-                  src={service.image}
-                  alt={service.name}
-                  className="w-full h-full object-cover"
-                />
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(to top, #F5F5F5 0%, rgba(245,245,245,0.3) 60%, transparent 100%)",
-                  }}
-                />
-                {service.badge && (
-                  <div
-                    className="absolute top-5 left-5 px-4 py-1.5 text-xs uppercase tracking-widest font-bold"
-                    style={{ backgroundColor: "#D4AF37", color: "#3B0A45" }}
-                  >
-                    {service.badge}
-                  </div>
-                )}
-              </div>
-
-              {/* Content */}
-              <div className="px-8 md:px-12 pb-10 -mt-6 relative z-10">
-                {/* Brand label */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="h-[1px] w-8" style={{ backgroundColor: "#D4AF37" }} />
-                  <span
-                    className="uppercase tracking-[0.2em] text-xs font-semibold"
-                    style={{ color: "#D4AF37" }}
-                  >
+            {/* Scrollable content */}
+            <div className="flex-1 overflow-y-auto px-8 py-6">
+              <motion.div
+                variants={stagger}
+                initial="hidden"
+                animate="visible"
+              >
+                {/* Service label */}
+                <motion.div variants={fadeUp} className="flex items-center gap-3 mb-3">
+                  <div className="h-[1px] w-6" style={{ backgroundColor: "#D4AF37" }} />
+                  <span className="text-xs uppercase tracking-[0.3em] font-semibold" style={{ color: "#D4AF37" }}>
                     Royal Güzellik
                   </span>
-                  <div className="flex gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={10} fill="#D4AF37" color="#D4AF37" />
-                    ))}
-                  </div>
-                </div>
+                </motion.div>
 
-                <h2
-                  className="text-3xl md:text-4xl font-serif mb-2"
-                  style={{ color: "#3B0A45" }}
-                >
+                {/* Name */}
+                <motion.h2 variants={fadeUp} className="font-serif text-3xl mb-1" style={{ color: "#3B0A45" }}>
                   {service.name}
-                </h2>
-                <p
-                  className="text-sm font-semibold uppercase tracking-wider mb-6"
-                  style={{ color: "#6A0DAD" }}
-                >
-                  {service.tagline}
-                </p>
+                </motion.h2>
 
-                <p className="font-light leading-relaxed mb-8 text-gray-600">
+                {/* Tagline */}
+                <motion.p variants={fadeUp} className="text-xs uppercase tracking-widest font-semibold mb-5" style={{ color: "#6A0DAD" }}>
+                  {service.tagline}
+                </motion.p>
+
+                {/* Separator */}
+                <motion.div variants={fadeUp} className="h-[1px] mb-6" style={{ background: "linear-gradient(90deg, #D4AF37, transparent)" }} />
+
+                {/* Description */}
+                <motion.p variants={fadeUp} className="text-sm font-light leading-relaxed mb-8" style={{ color: "#555" }}>
                   {service.description}
-                </p>
+                </motion.p>
 
                 {/* Benefits */}
-                <div
-                  className="p-6 mb-6 border-l-4"
-                  style={{
-                    backgroundColor: "rgba(59,10,69,0.04)",
-                    borderLeftColor: "#D4AF37",
-                  }}
-                >
-                  <h4
-                    className="uppercase tracking-widest text-xs font-bold mb-4"
-                    style={{ color: "#3B0A45" }}
-                  >
-                    Faydaları & Avantajlar
-                  </h4>
-                  <ul className="space-y-2.5">
+                <motion.div variants={fadeUp} className="mb-8">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Sparkles size={14} style={{ color: "#D4AF37" }} />
+                    <h3 className="text-xs uppercase tracking-widest font-bold" style={{ color: "#3B0A45" }}>
+                      Faydaları & Avantajları
+                    </h3>
+                  </div>
+
+                  <div className="space-y-3">
                     {service.benefits.map((b, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <CheckCircle2
-                          size={16}
-                          className="mt-0.5 shrink-0"
-                          style={{ color: "#D4AF37" }}
-                        />
-                        <span className="text-sm font-light text-gray-700">{b}</span>
-                      </li>
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: 16 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.35 + i * 0.07, duration: 0.38 }}
+                        className="flex items-start gap-3"
+                      >
+                        <CheckCircle2 size={15} className="mt-0.5 shrink-0" style={{ color: "#D4AF37" }} />
+                        <span className="text-sm font-light" style={{ color: "#444" }}>{b}</span>
+                      </motion.div>
                     ))}
-                  </ul>
-                </div>
+                  </div>
+                </motion.div>
 
                 {/* Details */}
-                <div
-                  className="p-6 mb-8 border"
-                  style={{ borderColor: "rgba(59,10,69,0.12)" }}
-                >
-                  <h4
-                    className="uppercase tracking-widest text-xs font-bold mb-3"
-                    style={{ color: "#3B0A45" }}
-                  >
-                    Uygulama Detayları
-                  </h4>
-                  <p className="text-sm font-light leading-relaxed text-gray-600">
+                <motion.div variants={fadeUp} className="p-5 mb-8" style={{ backgroundColor: "rgba(59,10,69,0.05)", borderLeft: "3px solid #D4AF37" }}>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Clock size={13} style={{ color: "#6A0DAD" }} />
+                    <h4 className="text-xs uppercase tracking-widest font-bold" style={{ color: "#3B0A45" }}>
+                      Uygulama Detayları
+                    </h4>
+                  </div>
+                  <p className="text-xs font-light leading-relaxed" style={{ color: "#666" }}>
                     {service.details}
                   </p>
-                </div>
+                </motion.div>
 
-                {/* CTA */}
-                <button
-                  onClick={() => {
-                    onClose();
-                    setTimeout(onBook, 200);
-                  }}
-                  className="royal-btn w-full flex items-center justify-center gap-3 py-5 uppercase tracking-widest text-sm font-bold hover:opacity-90"
-                  style={{ backgroundColor: "#3B0A45", color: "#D4AF37" }}
-                >
-                  Bu Hizmet İçin Randevu Al <ArrowRight size={16} />
-                </button>
-              </div>
+                {/* Decorative gold divider */}
+                <motion.div variants={fadeUp} className="flex items-center gap-3 mb-8">
+                  <div className="h-[1px] flex-1" style={{ backgroundColor: "rgba(212,175,55,0.3)" }} />
+                  <div className="w-1.5 h-1.5 rotate-45" style={{ backgroundColor: "#D4AF37" }} />
+                  <div className="h-[1px] flex-1" style={{ backgroundColor: "rgba(212,175,55,0.3)" }} />
+                </motion.div>
+              </motion.div>
             </div>
-          </motion.div>
+
+            {/* Sticky CTA at bottom */}
+            <div className="shrink-0 px-8 py-5 border-t" style={{ borderColor: "rgba(212,175,55,0.25)", backgroundColor: "#F5F5F5" }}>
+              <motion.button
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.4 }}
+                onClick={() => {
+                  onClose();
+                  setTimeout(onBook, 300);
+                }}
+                className="royal-btn w-full flex items-center justify-center gap-3 py-5 text-sm font-bold uppercase tracking-widest"
+                style={{ backgroundColor: "#3B0A45", color: "#D4AF37" }}
+              >
+                Bu Hizmet İçin Randevu Al
+                <ArrowRight size={16} />
+              </motion.button>
+
+              <p className="text-center text-xs mt-3 font-light" style={{ color: "#999" }}>
+                Ücretsiz danışma için WhatsApp'tan da ulaşabilirsiniz.
+              </p>
+            </div>
+          </motion.aside>
         </>
       )}
     </AnimatePresence>
