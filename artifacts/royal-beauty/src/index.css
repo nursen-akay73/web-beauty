@@ -192,3 +192,33 @@
 .glow-pulse {
   animation: glowPulse 2s ease-in-out infinite;
 }
+
+/* Royal button — oval + ripple sweep on click */
+.royal-btn {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px !important;
+  transition: transform 0.15s cubic-bezier(0.22, 0.61, 0.36, 1),
+              box-shadow 0.2s ease,
+              opacity 0.2s ease;
+}
+.royal-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.28) 50%, transparent 100%);
+  transform: translateX(-110%);
+  pointer-events: none;
+}
+.royal-btn:hover::after {
+  transform: translateX(110%);
+  transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.royal-btn:active {
+  transform: scale(0.96) !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25) !important;
+}
+.royal-btn:active::after {
+  transform: translateX(110%);
+  transition: transform 0.25s ease-out;
+}

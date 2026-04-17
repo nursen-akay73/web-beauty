@@ -268,7 +268,7 @@ export default function Contact() {
 
                 <Button
                   type="submit"
-                  className="w-full uppercase tracking-widest rounded-none py-6 mt-4 transition-all duration-300 font-bold"
+                  className="royal-btn w-full uppercase tracking-widest py-6 mt-4 font-bold"
                   style={{ backgroundColor: "#3B0A45", color: "#D4AF37" }}
                 >
                   Gönder

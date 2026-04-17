@@ -70,7 +70,7 @@ export default function Navbar() {
           </ul>
           <Button
             onClick={() => scrollTo("#contact")}
-            className="bg-accent hover:bg-accent/90 text-primary-foreground uppercase tracking-wider text-xs px-8 py-6 rounded-none font-semibold transition-all duration-300"
+            className="royal-btn bg-accent hover:bg-accent/90 text-primary-foreground uppercase tracking-wider text-xs px-8 py-6 font-semibold"
           >
             Randevu Al
           </Button>
@@ -109,7 +109,7 @@ export default function Navbar() {
             </ul>
             <Button
               onClick={() => scrollTo("#contact")}
-              className="bg-accent hover:bg-accent/90 text-primary-foreground w-full max-w-xs uppercase tracking-wider py-6 rounded-none text-lg mt-4"
+              className="royal-btn bg-accent hover:bg-accent/90 text-primary-foreground w-full max-w-xs uppercase tracking-wider py-6 text-lg mt-4"
             >
               Randevu Al
             </Button>

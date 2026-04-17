@@ -180,7 +180,7 @@ export default function Hero() {
               onClick={() => scrollTo("#contact")}
               size="lg"
               style={{ backgroundColor: "#D4AF37", color: "#3B0A45" }}
-              className="hover:opacity-90 rounded-none px-14 py-7 uppercase tracking-widest text-sm font-bold transition-all duration-400 hover:scale-105 shadow-lg"
+              className="royal-btn hover:opacity-90 px-14 py-7 uppercase tracking-widest text-sm font-bold shadow-lg"
             >
               Randevu Oluştur
             </Button>
@@ -188,7 +188,7 @@ export default function Hero() {
               onClick={() => scrollTo("#services")}
               variant="outline"
               size="lg"
-              className="bg-transparent border-white/40 text-white hover:bg-white hover:text-[#3B0A45] rounded-none px-12 py-7 uppercase tracking-widest text-sm transition-all duration-400"
+              className="royal-btn bg-transparent border-white/40 text-white hover:bg-white hover:text-[#3B0A45] px-12 py-7 uppercase tracking-widest text-sm transition-all duration-400"
             >
               Hizmetleri Keşfet
             </Button>

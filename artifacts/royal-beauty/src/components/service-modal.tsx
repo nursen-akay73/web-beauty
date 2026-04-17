@@ -329,7 +329,7 @@ export default function ServiceModal({ service, onClose, onBook }: Props) {
                     onClose();
                     setTimeout(onBook, 200);
                   }}
-                  className="w-full flex items-center justify-center gap-3 py-5 uppercase tracking-widest text-sm font-bold transition-all duration-300 hover:opacity-90"
+                  className="royal-btn w-full flex items-center justify-center gap-3 py-5 uppercase tracking-widest text-sm font-bold hover:opacity-90"
                   style={{ backgroundColor: "#3B0A45", color: "#D4AF37" }}
                 >
                   Bu Hizmet İçin Randevu Al <ArrowRight size={16} />
