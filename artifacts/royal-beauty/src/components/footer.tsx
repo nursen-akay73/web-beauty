@@ -5,7 +5,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#1a1025] text-primary-foreground border-t border-white/5">
+    <footer className="bg-[#2D0B3F] text-primary-foreground border-t border-white/5">
       <div className="container mx-auto px-6 md:px-12 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           
@@ -66,9 +66,9 @@ export default function Footer() {
                 className="bg-white/5 border border-white/10 text-white text-sm px-4 py-3 w-full focus:outline-none focus:border-accent/50 rounded-none"
               />
               <button className="bg-accent text-primary-foreground px-4 flex items-center justify-center hover:bg-accent/90 transition-colors">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinelinejoin="round">
-                  <line x1="22" y1="2" x2="11" y2="13"></line>
-                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
                 </svg>
               </button>
             </div>

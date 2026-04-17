@@ -4,7 +4,7 @@ export default function About() {
   return (
     <section id="about" className="py-24 md:py-32 bg-background relative overflow-hidden">
       {/* Decorative background element */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-secondary/30 rounded-l-[100px] -z-10" />
+      <div className="absolute top-0 right-0 w-1/3 h-full rounded-l-[100px] -z-10" style={{ backgroundColor: "rgba(106,13,173,0.10)" }} />
 
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">

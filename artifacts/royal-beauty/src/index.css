@@ -51,79 +51,85 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* LIGHT MODE */
+/* LIGHT MODE — Cream/White + Deep Eggplant Purple + Gold */
 :root {
-  --background: 40 40% 98%;
-  --foreground: 285 43% 18%;
+  --background: 0 0% 96%;         /* #F5F5F5 cream */
+  --foreground: 285 74% 16%;       /* #3B0A45 deep purple */
 
-  --border: 42 30% 85%;
+  --border: 285 20% 82%;
   
   --card: 0 0% 100%;
-  --card-foreground: 285 43% 18%;
-  --card-border: 42 30% 90%;
+  --card-foreground: 285 74% 16%;
+  --card-border: 285 20% 88%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 285 43% 18%;
-  --popover-border: 42 30% 90%;
+  --popover-foreground: 285 74% 16%;
+  --popover-border: 285 20% 88%;
 
-  /* Eggplant Purple */
-  --primary: 285 43% 18%;
-  --primary-foreground: 40 40% 98%;
+  /* #3B0A45 — Deep Eggplant Purple */
+  --primary: 285 74% 16%;
+  --primary-foreground: 0 0% 97%;
 
-  /* Soft Lavender/Purple for secondary */
-  --secondary: 285 20% 90%;
-  --secondary-foreground: 285 43% 18%;
+  /* #6A0DAD — Vivid Violet secondary */
+  --secondary: 278 88% 36%;
+  --secondary-foreground: 0 0% 97%;
 
-  --muted: 40 20% 92%;
-  --muted-foreground: 285 20% 40%;
+  --muted: 285 15% 92%;
+  --muted-foreground: 285 30% 42%;
 
-  /* Brushed Gold */
-  --accent: 42 70% 55%;
-  --accent-foreground: 0 0% 100%;
+  /* #D4AF37 — Brushed Gold */
+  --accent: 46 66% 52%;
+  --accent-foreground: 285 74% 16%;
 
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
-  --input: 42 30% 85%;
-  --ring: 42 70% 55%;
+  --input: 285 20% 84%;
+  --ring: 46 66% 52%;
 
   --app-font-sans: 'Plus Jakarta Sans', sans-serif;
   --app-font-serif: 'Playfair Display', serif;
   --app-font-mono: Menlo, monospace;
-  --radius: 0rem; 
+  --radius: 0rem;
+
+  --primary-border: hsl(285 74% 16%);
+  --secondary-border: hsl(278 88% 36%);
+  --muted-border: hsl(285 15% 88%);
+  --accent-border: hsl(46 66% 45%);
+  --destructive-border: hsl(0 84% 55%);
 }
 
 .dark {
-  --background: 285 43% 12%;
+  --background: 285 74% 8%;
   --foreground: 40 40% 95%;
 
-  --border: 285 30% 25%;
+  --border: 285 40% 22%;
   
-  --card: 285 40% 15%;
+  --card: 285 74% 12%;
   --card-foreground: 40 40% 95%;
-  --card-border: 285 30% 25%;
+  --card-border: 285 40% 22%;
 
-  --popover: 285 40% 15%;
+  --popover: 285 74% 12%;
   --popover-foreground: 40 40% 95%;
-  --popover-border: 285 30% 25%;
+  --popover-border: 285 40% 22%;
 
   --primary: 40 40% 95%;
-  --primary-foreground: 285 43% 12%;
+  --primary-foreground: 285 74% 10%;
 
-  --secondary: 285 30% 20%;
+  --secondary: 285 40% 22%;
   --secondary-foreground: 40 40% 95%;
 
-  --muted: 285 30% 20%;
-  --muted-foreground: 285 20% 70%;
+  --muted: 285 40% 18%;
+  --muted-foreground: 285 20% 65%;
 
-  --accent: 42 70% 55%;
-  --accent-foreground: 285 43% 12%;
+  --accent: 46 66% 52%;
+  --accent-foreground: 285 74% 10%;
 
   --destructive: 0 62% 30%;
   --destructive-foreground: 40 40% 95%;
 
-  --input: 285 30% 25%;
-  --ring: 42 70% 55%;
+  --input: 285 40% 22%;
+  --ring: 46 66% 52%;
 }
 
 @layer base {
@@ -138,4 +144,51 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
   }
+}
+
+/* Section transition overlay effect */
+.section-fade-in {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.section-fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ken Burns hero animation */
+@keyframes kenBurns {
+  0%   { transform: scale(1.0) translate(0%, 0%); }
+  25%  { transform: scale(1.08) translate(-1%, -1%); }
+  50%  { transform: scale(1.05) translate(1%, 0.5%); }
+  75%  { transform: scale(1.1) translate(-0.5%, 1%); }
+  100% { transform: scale(1.0) translate(0%, 0%); }
+}
+.ken-burns {
+  animation: kenBurns 18s ease-in-out infinite;
+}
+
+/* Shimmer for gold elements */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.gold-shimmer {
+  background: linear-gradient(90deg, #D4AF37 0%, #f5d07a 40%, #D4AF37 60%, #b8922e 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Glow pulse for service items */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(106, 13, 173, 0); }
+  50%       { box-shadow: 0 0 24px 4px rgba(106, 13, 173, 0.35); }
+}
+.glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
 }
