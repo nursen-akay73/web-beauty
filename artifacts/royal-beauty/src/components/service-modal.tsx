@@ -206,6 +206,114 @@ export default function ServiceModal({ service, onClose, onBook }: ServiceModalP
             onClick={onClose}
           />
 
+          {/* LEFT image panel — slides in from left, desktop only */}
+          <motion.div
+            key="left-panel"
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-100%" }}
+            transition={{ type: "spring", stiffness: 320, damping: 38, mass: 0.85 }}
+            className="fixed top-0 left-0 bottom-0 z-[110] hidden lg:flex flex-col items-center justify-center overflow-hidden"
+            style={{
+              width: "min(480px, 45vw)",
+              backgroundColor: "#1a0828",
+              boxShadow: "8px 0 60px rgba(59,10,69,0.5)",
+            }}
+            onClick={(e) => e.stopPropagation()}
+            onPointerDown={(e) => e.stopPropagation()}
+          >
+            {/* Gold right edge */}
+            <div className="absolute right-0 top-0 bottom-0 w-[3px]" style={{ background: "linear-gradient(to bottom, #D4AF37 0%, #6A0DAD 50%, #D4AF37 100%)" }} />
+
+            {/* Background tint */}
+            <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, rgba(106,13,173,0.2) 0%, transparent 70%)" }} />
+
+            {/* Staircase image frames */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              {/* Frame 3 — bottom-right (furthest back) */}
+              <motion.div
+                initial={{ opacity: 0, x: 30, y: 30 }}
+                animate={{ opacity: 0.3, x: 24, y: 24 }}
+                transition={{ delay: 0.05, duration: 0.7, ease: "easeOut" }}
+                className="absolute overflow-hidden"
+                style={{ width: "72%", height: "62%", border: "1px solid rgba(212,175,55,0.2)" }}
+              >
+                <img src={service.image} alt="" className="w-full h-full object-cover" style={{ filter: "brightness(0.4) saturate(0.6)" }} />
+              </motion.div>
+
+              {/* Frame 2 — middle */}
+              <motion.div
+                initial={{ opacity: 0, x: 15, y: 15 }}
+                animate={{ opacity: 0.6, x: 12, y: 12 }}
+                transition={{ delay: 0.15, duration: 0.7, ease: "easeOut" }}
+                className="absolute overflow-hidden"
+                style={{ width: "72%", height: "62%", border: "1px solid rgba(212,175,55,0.35)" }}
+              >
+                <img src={service.image} alt="" className="w-full h-full object-cover" style={{ filter: "brightness(0.55) saturate(0.75)" }} />
+              </motion.div>
+
+              {/* Frame 1 — front (main image) */}
+              <motion.div
+                initial={{ opacity: 0, x: 0, y: 0, scale: 0.95 }}
+                animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+                transition={{ delay: 0.25, duration: 0.8, ease: "easeOut" }}
+                className="absolute overflow-hidden"
+                style={{ width: "72%", height: "62%", border: "2px solid rgba(212,175,55,0.6)" }}
+              >
+                <motion.img
+                  src={service.image}
+                  alt={service.name}
+                  className="w-full h-full object-cover"
+                  initial={{ scale: 1.08 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.25, duration: 1.2, ease: "easeOut" }}
+                  style={{ filter: "brightness(0.7) saturate(0.9)" }}
+                />
+                {/* Subtle overlay */}
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(59,10,69,0.55) 0%, transparent 55%)" }} />
+              </motion.div>
+
+              {/* Gold corner accents */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.55, duration: 0.5 }}
+                className="absolute"
+                style={{ width: "72%", height: "62%" }}
+              >
+                {/* Top-left corner */}
+                <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2" style={{ borderColor: "#D4AF37" }} />
+                {/* Bottom-right corner */}
+                <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2" style={{ borderColor: "#D4AF37" }} />
+              </motion.div>
+
+              {/* Bottom label */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+                className="absolute bottom-12 left-0 right-0 text-center"
+              >
+                <p className="text-[10px] uppercase tracking-[0.4em] mb-1" style={{ color: "#D4AF37" }}>Royal Güzellik</p>
+                <p className="font-serif text-white/80 text-lg">{service.name}</p>
+              </motion.div>
+
+              {/* Top label */}
+              <motion.div
+                initial={{ opacity: 0, y: -12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+                className="absolute top-10 left-0 right-0 flex justify-center"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="h-[1px] w-8" style={{ backgroundColor: "rgba(212,175,55,0.4)" }} />
+                  <div className="w-1.5 h-1.5 rotate-45" style={{ backgroundColor: "#D4AF37" }} />
+                  <div className="h-[1px] w-8" style={{ backgroundColor: "rgba(212,175,55,0.4)" }} />
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+
           {/* Drawer — slides in from right */}
           <motion.div
             key="drawer"
