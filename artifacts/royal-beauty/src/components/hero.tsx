@@ -9,6 +9,15 @@ const heroSlides = [
     italic: "Kraliyet",
     subtitle: "İhtişamıyla Taçlandırın",
     caption: "Leyla Akay vizyonuyla, Soprano Ice teknolojisi ve profesyonel dokunuşların buluştuğu İstanbul'un en seçkin güzellik merkezi.",
+    overlayOpacity: "0.72",
+  },
+  {
+    image: "/images/hero-faces.jpeg",
+    title: "Güzelliğinizi",
+    italic: "Keşfedin,",
+    subtitle: "Kendinizi Hissedin",
+    caption: "Her yüzün kendine has güzelliği vardır. Biz o güzelliği ortaya çıkarıyoruz.",
+    overlayOpacity: "0.60",
   },
   {
     image: "/images/service-skincare.png",
@@ -16,6 +25,7 @@ const heroSlides = [
     italic: "Işıltı,",
     subtitle: "Ruhunuzda Zarafet",
     caption: "Hydrafacial'dan Dermapen'e, medikal cilt bakımından altın maskeye kadar geniş tedavi yelpazesiyle.",
+    overlayOpacity: "0.72",
   },
   {
     image: "/images/service-laser.png",
@@ -23,6 +33,7 @@ const heroSlides = [
     italic: "Lazer",
     subtitle: "ile Kusursuz Cilt",
     caption: "Dört mevsim, her cilt tipinde ağrısız ve kalıcı çözüm — dünyada standart belirleyen teknoloji.",
+    overlayOpacity: "0.72",
   },
 ];
 
@@ -60,8 +71,13 @@ export default function Hero() {
             alt="Royal Güzellik"
             className="w-full h-full object-cover ken-burns"
           />
-          {/* Dark purple overlay — #2D0B3F toned */}
-          <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(45,11,63,0.85) 0%, rgba(59,10,69,0.70) 50%, rgba(45,11,63,0.90) 100%)" }} />
+          {/* Dark purple overlay — opacity driven per-slide */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(135deg, rgba(45,11,63,${heroSlides[current].overlayOpacity}) 0%, rgba(59,10,69,${parseFloat(heroSlides[current].overlayOpacity) - 0.15}) 50%, rgba(45,11,63,${heroSlides[current].overlayOpacity}) 100%)`,
+            }}
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-[#2D0B3F] via-[#3B0A45]/40 to-transparent" />
         </motion.div>
       </AnimatePresence>
