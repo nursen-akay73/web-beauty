@@ -200,188 +200,170 @@ export default function ServiceModal({ service, onClose, onBook }: ServiceModalP
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.35 }}
             className="fixed inset-0 z-[100]"
-            style={{ backgroundColor: "rgba(10,2,20,0.88)", backdropFilter: "blur(6px)" }}
+            style={{ backgroundColor: "rgba(10,2,20,0.72)", backdropFilter: "blur(4px)" }}
             onClick={onClose}
           />
 
-          {/* 3D Cube wrapper */}
-          <div
-            className="fixed inset-0 z-[110] flex items-center justify-center pointer-events-none p-4"
-            style={{ perspective: "1400px" }}
+          {/* Drawer — slides in from right */}
+          <motion.div
+            key="drawer"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", stiffness: 320, damping: 38, mass: 0.85 }}
+            className="fixed top-0 right-0 bottom-0 z-[110] flex flex-col"
+            style={{ width: "min(480px, 100vw)", boxShadow: "-8px 0 60px rgba(59,10,69,0.45)" }}
+            onClick={(e) => e.stopPropagation()}
+            onPointerDown={(e) => e.stopPropagation()}
           >
-            <motion.div
-              key={service.name}
-              className="relative pointer-events-auto w-full"
-              style={{
-                maxWidth: "820px",
-                transformStyle: "preserve-3d",
-              }}
-              initial={{ rotateY: -90, opacity: 0, scale: 0.88, z: -200 }}
-              animate={{ rotateY: 0,  opacity: 1, scale: 1,    z: 0 }}
-              exit={{   rotateY:  90, opacity: 0, scale: 0.88, z: -200 }}
-              transition={{ type: "spring", stiffness: 260, damping: 28, mass: 0.9 }}
-            >
-              {/* 3D depth shadow */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  boxShadow: "8px 8px 0 0 rgba(212,175,55,0.15), 18px 18px 0 0 rgba(59,10,69,0.2), 0 0 60px rgba(212,175,55,0.1)",
-                  zIndex: -1,
-                }}
+            {/* Gold left edge */}
+            <div className="absolute left-0 top-0 bottom-0 w-[3px]" style={{ background: "linear-gradient(to bottom, #D4AF37 0%, #6A0DAD 50%, #D4AF37 100%)" }} />
+
+            {/* Hero image — top portion */}
+            <div className="relative shrink-0 overflow-hidden" style={{ height: "240px" }}>
+              <motion.img
+                src={service.image}
+                alt={service.name}
+                className="w-full h-full object-cover"
+                initial={{ scale: 1.1 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 1.1, ease: "easeOut" }}
+                style={{ filter: "brightness(0.55) saturate(0.85)" }}
               />
+              {/* Bottom gradient fade into drawer bg */}
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 30%, #1a0828 100%)" }} />
+              {/* Top gradient */}
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(59,10,69,0.5) 0%, transparent 40%)" }} />
 
-              {/* Main panel — landscape two-column */}
-              <div
-                className="flex overflow-hidden"
-                style={{
-                  backgroundColor: "#F5F5F5",
-                  border: "1px solid rgba(212,175,55,0.4)",
-                  height: "min(520px, 82vh)",
-                }}
-                onClick={(e) => e.stopPropagation()}
-                onPointerDown={(e) => e.stopPropagation()}
+              {/* Close button */}
+              <button
+                onClick={onClose}
+                className="absolute top-5 right-5 w-9 h-9 flex items-center justify-center text-white/80 hover:text-white transition-colors duration-200"
+                style={{ border: "1px solid rgba(255,255,255,0.3)", backgroundColor: "rgba(10,2,20,0.4)" }}
               >
-                {/* LEFT — image column */}
-                <div className="relative shrink-0 overflow-hidden" style={{ width: "38%" }}>
-                  <motion.img
-                    src={service.image}
-                    alt={service.name}
-                    className="w-full h-full object-cover"
-                    initial={{ scale: 1.12 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 1, ease: "easeOut" }}
-                    style={{ filter: "brightness(0.6) saturate(0.85)" }}
-                  />
-                  {/* Gradient fade to right */}
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to right, transparent 60%, #F5F5F5 100%)" }} />
-                  {/* Gradient fade bottom */}
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(45,11,63,0.7) 0%, transparent 50%)" }} />
+                <X size={15} />
+              </button>
 
-                  {/* Badge */}
-                  {service.badge && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 }}
-                      className="absolute top-5 left-5 flex items-center gap-1.5 px-3 py-1 text-xs font-bold uppercase tracking-widest"
-                      style={{ backgroundColor: "#D4AF37", color: "#3B0A45" }}
-                    >
-                      <Star size={10} fill="currentColor" /> {service.badge}
-                    </motion.div>
-                  )}
+              {/* Badge */}
+              {service.badge && (
+                <motion.div
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="absolute top-5 left-6 flex items-center gap-1.5 px-3 py-1 text-[10px] font-bold uppercase tracking-widest"
+                  style={{ backgroundColor: "#D4AF37", color: "#3B0A45" }}
+                >
+                  <Star size={9} fill="currentColor" /> {service.badge}
+                </motion.div>
+              )}
 
-                  {/* Service name overlay on image */}
-                  <div className="absolute bottom-5 left-5 right-5">
-                    <p className="text-white/60 text-[10px] uppercase tracking-[0.3em] mb-1">Royal Güzellik</p>
-                    <h2 className="font-serif text-white text-2xl leading-tight drop-shadow-lg">{service.name}</h2>
+              {/* Service title overlay */}
+              <div className="absolute bottom-0 left-0 right-0 px-7 pb-5">
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.12, duration: 0.5 }}
+                >
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <div className="h-[1px] w-4" style={{ backgroundColor: "#D4AF37" }} />
+                    <span className="text-[10px] uppercase tracking-[0.3em] font-medium" style={{ color: "#D4AF37" }}>
+                      Royal Güzellik
+                    </span>
                   </div>
-
-                  {/* Gold left bar */}
-                  <div className="absolute left-0 top-0 bottom-0 w-1" style={{ background: "linear-gradient(to bottom, #D4AF37, #6A0DAD, #D4AF37)" }} />
-                </div>
-
-                {/* RIGHT — content column */}
-                <div className="flex flex-col flex-1 min-w-0">
-                  {/* Top bar + close */}
-                  <div className="shrink-0 flex items-center justify-between px-6 pt-5 pb-3">
-                    <div>
-                      <div className="flex items-center gap-2 mb-0.5">
-                        <div className="h-[1px] w-4" style={{ backgroundColor: "#D4AF37" }} />
-                        <span className="text-[10px] uppercase tracking-[0.3em] font-semibold" style={{ color: "#D4AF37" }}>
-                          {service.tagline}
-                        </span>
-                      </div>
-                      <div className="h-[2px] w-full mt-1" style={{ background: "linear-gradient(90deg, #D4AF37 0%, transparent 80%)" }} />
-                    </div>
-                    <button
-                      onClick={onClose}
-                      className="shrink-0 ml-4 w-8 h-8 flex items-center justify-center transition-all duration-200 hover:bg-[#3B0A45] hover:text-white"
-                      style={{ border: "1px solid rgba(59,10,69,0.25)", color: "#3B0A45" }}
-                    >
-                      <X size={14} />
-                    </button>
-                  </div>
-
-                  {/* Scrollable content */}
-                  <div
-                    className="flex-1 overflow-y-auto px-6 pb-4"
-                    style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y", overscrollBehavior: "contain" }}
-                  >
-                    <motion.p
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2, duration: 0.5 }}
-                      className="text-sm font-light leading-relaxed mb-5"
-                      style={{ color: "#555" }}
-                    >
-                      {service.description}
-                    </motion.p>
-
-                    <div className="grid grid-cols-1 gap-4">
-                      {/* Benefits */}
-                      <motion.div
-                        initial={{ opacity: 0, x: -12 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.28, duration: 0.5 }}
-                      >
-                        <div className="flex items-center gap-2 mb-2.5">
-                          <Sparkles size={12} style={{ color: "#D4AF37" }} />
-                          <h3 className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "#3B0A45" }}>Faydaları</h3>
-                        </div>
-                        <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-                          {service.benefits.map((b, i) => (
-                            <motion.div
-                              key={i}
-                              initial={{ opacity: 0, x: -8 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.32 + i * 0.06 }}
-                              className="flex items-start gap-2"
-                            >
-                              <CheckCircle2 size={12} className="mt-0.5 shrink-0" style={{ color: "#D4AF37" }} />
-                              <span className="text-xs font-light leading-snug" style={{ color: "#444" }}>{b}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </motion.div>
-
-                      {/* Details */}
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4, duration: 0.5 }}
-                        className="p-4"
-                        style={{ backgroundColor: "rgba(59,10,69,0.05)", borderLeft: "3px solid #D4AF37" }}
-                      >
-                        <div className="flex items-center gap-2 mb-2">
-                          <Clock size={11} style={{ color: "#6A0DAD" }} />
-                          <h4 className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "#3B0A45" }}>
-                            Uygulama Detayları
-                          </h4>
-                        </div>
-                        <p className="text-xs font-light leading-relaxed" style={{ color: "#666" }}>{service.details}</p>
-                      </motion.div>
-                    </div>
-                  </div>
-
-                  {/* CTA */}
-                  <div className="shrink-0 px-6 pb-5 pt-3" style={{ borderTop: "1px solid rgba(212,175,55,0.2)" }}>
-                    <motion.button
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.55, duration: 0.4 }}
-                      onClick={() => { onClose(); setTimeout(onBook, 300); }}
-                      className="royal-btn btn-randevu-shimmer w-full flex items-center justify-center gap-3 py-3.5 text-sm font-bold uppercase tracking-widest"
-                      style={{ backgroundColor: "#3B0A45", color: "#D4AF37" }}
-                    >
-                      Bu Hizmet İçin Randevu Al <ArrowRight size={15} />
-                    </motion.button>
-                  </div>
-                </div>
+                  <h2 className="font-serif text-white text-[28px] leading-tight">{service.name}</h2>
+                  <p className="text-[11px] uppercase tracking-widest mt-1" style={{ color: "#D4AF37" }}>{service.tagline}</p>
+                </motion.div>
               </div>
-            </motion.div>
-          </div>
+            </div>
+
+            {/* Scrollable content */}
+            <div
+              className="flex-1 overflow-y-auto px-7 py-6"
+              style={{
+                backgroundColor: "#F5F5F5",
+                WebkitOverflowScrolling: "touch",
+                touchAction: "pan-y",
+                overscrollBehavior: "contain",
+              }}
+            >
+              {/* Gold separator */}
+              <div className="h-[1px] mb-5" style={{ background: "linear-gradient(90deg, #D4AF37 0%, transparent 70%)" }} />
+
+              {/* Description */}
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="text-sm font-light leading-relaxed mb-6"
+                style={{ color: "#555" }}
+              >
+                {service.description}
+              </motion.p>
+
+              {/* Benefits */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.28, duration: 0.5 }}
+                className="mb-5"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <Sparkles size={12} style={{ color: "#D4AF37" }} />
+                  <h3 className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "#3B0A45" }}>Faydaları</h3>
+                </div>
+                <div className="space-y-2.5">
+                  {service.benefits.map((b, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.32 + i * 0.06 }}
+                      className="flex items-start gap-2.5"
+                    >
+                      <CheckCircle2 size={13} className="mt-0.5 shrink-0" style={{ color: "#D4AF37" }} />
+                      <span className="text-sm font-light leading-snug" style={{ color: "#444" }}>{b}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Details box */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45, duration: 0.5 }}
+                className="p-5 mb-2"
+                style={{ backgroundColor: "rgba(59,10,69,0.06)", borderLeft: "3px solid #D4AF37" }}
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <Clock size={12} style={{ color: "#6A0DAD" }} />
+                  <h4 className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "#3B0A45" }}>
+                    Uygulama Detayları
+                  </h4>
+                </div>
+                <p className="text-sm font-light leading-relaxed" style={{ color: "#666" }}>{service.details}</p>
+              </motion.div>
+            </div>
+
+            {/* CTA footer */}
+            <div
+              className="shrink-0 px-7 py-5"
+              style={{ backgroundColor: "#F5F5F5", borderTop: "1px solid rgba(212,175,55,0.25)" }}
+            >
+              <motion.button
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.55, duration: 0.4 }}
+                onClick={() => { onClose(); setTimeout(onBook, 300); }}
+                className="royal-btn btn-randevu-shimmer w-full flex items-center justify-center gap-3 py-4 text-sm font-bold uppercase tracking-widest"
+                style={{ backgroundColor: "#3B0A45", color: "#D4AF37" }}
+              >
+                Bu Hizmet İçin Randevu Al <ArrowRight size={15} />
+              </motion.button>
+            </div>
+          </motion.div>
         </>
       )}
     </AnimatePresence>
