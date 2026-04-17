@@ -172,8 +172,7 @@
 
 /* Ken Burns Out — starts close, slowly pulls back */
 @keyframes kenBurnsOut {
-  0%   { transform: scale(1.25) translate(0%, 0%); }
-  50%  { transform: scale(1.12) translate(0%, 0%); }
+  0%   { transform: scale(1.08) translate(0%, 0%); }
   100% { transform: scale(1.0)  translate(0%, 0%); }
 }
 .ken-burns-out {
