@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Instagram } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useShimmerTransition } from "@/components/page-shimmer";
 
@@ -68,6 +68,24 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
+          <a
+            href="https://www.instagram.com/royalguzellik_"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="group relative flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-300 hover:border-accent hover:bg-accent/10"
+            style={{ borderColor: "rgba(212,175,55,0.4)" }}
+          >
+            <Instagram
+              size={18}
+              className="transition-all duration-300 group-hover:scale-110"
+              style={{ color: scrolled ? "#D4AF37" : "#D4AF37" }}
+            />
+            {/* shimmer ring on hover */}
+            <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{ boxShadow: "0 0 12px rgba(212,175,55,0.45)" }}
+            />
+          </a>
           <Button
             onClick={() => scrollTo("#contact")}
             className="royal-btn bg-accent hover:bg-accent/90 text-primary-foreground uppercase tracking-wider text-xs px-8 py-6 font-semibold"

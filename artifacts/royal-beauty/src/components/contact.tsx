@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Clock, ChevronDown } from "lucide-react";
+import { MapPin, Phone, Clock, ChevronDown, Instagram } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -168,7 +168,34 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="uppercase tracking-widest text-sm font-semibold mb-1 text-white">Telefon & WhatsApp</h4>
-                  <p className="text-white/60 font-light">+90 555 123 45 67<br />+90 212 123 45 67</p>
+                  <a
+                    href="https://wa.me/905453632026"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-light transition-colors hover:text-[#D4AF37]"
+                    style={{ color: "rgba(255,255,255,0.6)", display: "block" }}
+                  >
+                    +90 545 363 20 26
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="mt-1 p-3 rounded-full border" style={{ borderColor: "rgba(212,175,55,0.35)" }}>
+                  <Instagram size={20} style={{ color: "#D4AF37" }} />
+                </div>
+                <div>
+                  <h4 className="uppercase tracking-widest text-sm font-semibold mb-1 text-white">Instagram</h4>
+                  <a
+                    href="https://www.instagram.com/royalguzellik_"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-light transition-all duration-300 hover:text-[#D4AF37] group inline-flex items-center gap-2"
+                    style={{ color: "rgba(255,255,255,0.6)" }}
+                  >
+                    @royalguzellik_
+                    <span className="text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 uppercase tracking-wider" style={{ color: "#D4AF37" }}>↗</span>
+                  </a>
                 </div>
               </div>
 
