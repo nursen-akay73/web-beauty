@@ -1,0 +1,89 @@
+Adım 1: Vizyon ve Renk Paleti
+Öncelikle tasarıma başlamadan önce net bir görsel dil oluşturalım.
+
+Ana Tema: Modern Lüks ve Zarafet
+Renk Paleti:
+
+Ana Renkler: Derin Mürdüm/Patlıcan Moru (Mevcut moru daha zenginleştireceğiz)
+
+Vurgu Renkleri: Fırçalanmış Altın Sarısı (Logoda ve önemli detaylarda kullanılacak)
+
+Arka Plan: Çok açık, kremimsi beyaz veya çok açık lila (Gözü yormayan, ferah bir his için)
+
+Tasarım İlkeleri:
+
+Temiz ve Açık Düzen: İçeriklerin rahat okunması için bolca beyaz alan bırakacağız.
+
+Modern Tipografi: Serifli (şık) ve sans-serif (modern) yazı tiplerini bir arada kullanarak hem klasik hem de modern bir hava yakalayacağız.
+
+Yüksek Kaliteli Görseller: Mevcut görselleri kullanmaya devam edeceğiz, ancak bunları daha estetik çerçeveler veya yerleşimler içine alacağız.
+
+Hafif Efektler: Sayfa geçişlerinde, butonların üzerine gelindiğinde (hover) veya görsellerin yüklenmesinde yumuşak ve zarif animasyonlar kullanacağız.
+
+Adım 2: Ana Sayfa Kahraman (Hero) Bölümü ve Navigasyon
+Mevcut sitenizdeki ilk izlenimi güçlendirelim.
+
+Yeni Navigasyon (Menü):
+
+Ekranın üst kısmında sabitlenmiş (sticky), şeffaf veya çok hafif bir arka plana sahip bir menü barı.
+
+Solda: Yenilenmiş, altın sarısı Royal Güzellik logosu.
+
+Ortada: "Ana Sayfa", "Hizmetlerimiz", "Hakkımızda", "Galeri", "İletişim" linkleri (Yazı tipi: Şık bir sans-serif, üzerine gelindiğinde altın sarısı parıltı efekti).
+
+Sağda: Belirgin bir "Randevu Al" butonu (Arka planı mor, yazısı altın sarısı).
+
+Yeni Kahraman (Hero) Bölümü:
+
+Mevcut sol ve sağdaki yüz görsellerini koruyabiliriz, ancak bunları tam ekran bir slider veya daha büyük bir arka plan görseli içine entegre edelim.
+
+Ortadaki mevcut butonlar yerine, dikkat çekici bir başlık ve kısa bir giriş metni ekleyelim.
+
+Başlık (H1): "Güzelliğinize Değer Katan Özel Bir Deneyim" (Şık bir serif yazı tipi, altın sarısı renkte).
+
+Alt Başlık: "Royal Güzellik ile kendinizi daha özel, daha bakımlı ve daha güzel hissedin."
+
+Ana Eylem Butonu (CTA): "Hizmetlerimizi Keşfedin" (Mor arka plan, altın sarısı yazı).
+
+Efekt: Arka plandaki görseller hafifçe yakınlaşıp uzaklaşan bir "Ken Burns" efekti ile hareket etsin.
+
+Adım 3: "Hakkımızda" Bölümünün Yeniden Tasarımı
+Verdiğiniz metni en etkili şekilde sunalım. Bu bölüm, ana sayfada Kahraman bölümünün hemen altında yer alacak.
+
+Tasarım Önerisi:
+
+Solda: Mevcut Soprano Buz Lazer cihazının ve ödül görselinin yer aldığı, lüks hissi veren bir çerçeve içinde sunulmuş görsel.
+
+Sağda: Metin içerikleri.
+
+Başlık: "Royal Güzellik Hikayemiz" (Mor renkte, modern serif yazı tipi).
+
+Metin Düzeni: Verdiğiniz metni paragraflar halinde, okunması kolay bir sans-serif yazı tipiyle sunacağız. Önemli kelimeleri (Leyla Akay, İstanbul Royal Güzellik Akademisi, Buz Lazer Soprano, Hijyen ve müşteri memnuniyeti) altın sarısı ile vurgulayacağız.
+
+Uzmanlık Alanları Listesi: Bu listeyi basit maddeler yerine, küçük altın sarısı ikonlarla (örneğin: cilt bakımı için bir yüz ikonu, saç kesimi için makas ikonu) zenginleştirilmiş modern bir kart düzeninde sunalım.
+
+Vurgu Kartı: Hijyen ve müşteri memnuniyeti ile ilgili paragrafı, hafif mor bir arka plana sahip, etrafı altın sarısı ince bir çizgiyle çevrili bir "Güven ve Kalite" kartı içinde sunabiliriz.
+
+Efekt: Bu bölüme kaydırıldığında, soldaki görsel ve sağdaki metin blokları farklı yönlerden yumuşak bir şekilde ekrana gelsin.
+
+Adım 4: Diğer Bölümler (Hizmetlerimiz, Galeri, İletişim)
+Bu bölümleri de aynı estetik dille yenileyeceğiz.
+
+Hizmetlerimiz: Mevcut liste görünümü yerine, her hizmet için ayrı bir kart tasarımı kullanalım. Her kartta hizmetin adı, kısa bir açıklaması ve ilgili bir ikon veya küçük bir görsel yer alsın. Kartların üzerine gelindiğinde hafifçe büyüme ve altın sarısı bir gölge efekti olsun. "Hydrafacial Faydaları" gibi modal pencereleri daha şık, kenarları yuvarlatılmış ve altın sarısı detaylara sahip hale getirelim.
+
+Galeri (Yeni Eklenecek): Yapılan uygulamaların öncesi-sonrası fotoğraflarının yer aldığı, modern bir galeri düzeni.
+
+İletişim ve Randevu: Mevcut formları ve iletişim bilgilerini, mor ve altın sarısı detaylarla süslenmiş, temiz bir harita entegrasyonu ile sunalım. WhatsApp butonu her zaman ekranın bir köşesinde sabit kalsın.
+
+Adım 5: Replit Üzerinde Uygulama Planı
+Replit kullanarak bu tasarımı hayata geçirmek için teknik bir plan yapalım.
+
+HTML Yapısı (index.html): Sayfanın bölümlerini (header, hero, about, services, gallery, contact, footer) belirleyen temiz bir HTML5 yapısı oluşturun.
+
+CSS Framework: Modern ve duyarlı (responsive) bir tasarım için Tailwind CSS veya Bootstrap gibi bir framework kullanmayı düşünebilirsiniz. Bu, mor ve altın sarısı renk paletini ve tipografiyi yönetmeyi kolaylaştıracaktır.
+
+Özel CSS (style.css): Framework'ün yetmediği yerlerde, özel animasyonlar, buton stilleri ve lüks detaylar için kendi CSS kodlarınızı yazın. Altın sarısı detaylar için gradyanlar ve gölgeler kullanın.
+
+JavaScript (script.js): Kaydırma efektleri (AOS - Animate On Scroll kütüphanesi kullanılabilir), slider'lar, modal pencereler ve diğer etkileşimli öğeler için JavaScript kodlarını ekleyin.
+
+Görseller: Mevcut görselleri yüksek kaliteli formatlarda (WebP gibi) optimize ederek Replit projesine yükleyin.

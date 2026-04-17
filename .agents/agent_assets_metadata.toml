@@ -1,0 +1,56 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "XZTe0W5kI_i1AE3ueRxeM"
+uri = "file://artifacts/royal-beauty/public/images/hero.png"
+type = "image"
+title = "Luxury salon interior hero"
+
+[[generated]]
+id = "XJJz0J56aTI3-mRMRISVw"
+uri = "file://artifacts/royal-beauty/public/images/owner.png"
+type = "image"
+title = "Professional esthetician in salon"
+
+[[generated]]
+id = "9VICajeeTA3yyH9-UjGHl"
+uri = "file://artifacts/royal-beauty/public/images/service-skincare.png"
+type = "image"
+title = "Luxury skin care treatment"
+
+[[generated]]
+id = "M_vdUTTHLWJeh7PiRYT30"
+uri = "file://artifacts/royal-beauty/public/images/service-laser.png"
+type = "image"
+title = "High end laser hair removal"
+
+[[generated]]
+id = "yoLovOJk-ZDn-BettCIN-"
+uri = "file://artifacts/royal-beauty/public/images/service-hair.png"
+type = "image"
+title = "Elegant hair styling service"
+
+[[generated]]
+id = "ju-ZJ6JfrWswm4Jk0pPuC"
+uri = "file://artifacts/royal-beauty/public/images/service-makeup.png"
+type = "image"
+title = "Flawless professional makeup"
+
+[[generated]]
+id = "2kcVvEKUn0g9JHAuldGHg"
+uri = "file://artifacts/royal-beauty/public/images/gallery-1.png"
+type = "image"
+title = "Gallery luxury skin"
+
+[[generated]]
+id = "y_4T9QspqpCLXwLqWjz-S"
+uri = "file://artifacts/royal-beauty/public/images/gallery-2.png"
+type = "image"
+title = "Gallery perfect brows"
+
+[[generated]]
+id = "IjCUpd_vGEZWA2oa8HzKF"
+uri = "file://artifacts/royal-beauty/public/images/gallery-3.png"
+type = "image"
+title = "Gallery salon tools"
