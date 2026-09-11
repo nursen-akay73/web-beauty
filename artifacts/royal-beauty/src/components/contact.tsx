@@ -221,10 +221,34 @@ export default function Contact() {
     },
   });
 
-  function onSubmit(_values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    const lines = [
+      "Merhaba, randevu talebim var.",
+      "",
+      `Ad Soyad: ${values.name}`,
+      `Telefon: ${values.phone}`,
+    ];
+
+    if (values.service) {
+      lines.push(`Hizmet: ${values.service}`);
+    }
+
+    if (values.preferredDate) {
+      lines.push(
+        `Tercih edilen tarih: ${format(values.preferredDate, "d MMMM yyyy", { locale: tr })}`
+      );
+    }
+
+    if (values.message?.trim()) {
+      lines.push(`Not: ${values.message.trim()}`);
+    }
+
+    const text = encodeURIComponent(lines.join("\n"));
+    window.open(`https://wa.me/905453632026?text=${text}`, "_blank", "noopener,noreferrer");
+
     toast({
-      title: "Talebiniz Alındı",
-      description: "En kısa sürede sizinle iletişime geçeceğiz.",
+      title: "WhatsApp açılıyor",
+      description: "Mesajınızı kontrol edip göndermeniz yeterli.",
     });
     form.reset();
   }
