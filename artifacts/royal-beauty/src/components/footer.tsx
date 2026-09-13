@@ -23,14 +23,14 @@ export default function Footer() {
                 href="https://www.instagram.com/royalguzellik_"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/70 hover:bg-accent hover:text-white hover:border-accent transition-all duration-300"
+                className="w-11 h-11 md:w-10 md:h-10 rounded-full border border-white/10 flex items-center justify-center text-white/70 hover:bg-accent hover:text-white hover:border-accent transition-all duration-300"
               >
                 <Instagram size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/70 hover:bg-accent hover:text-white hover:border-accent transition-all duration-300">
+              <a href="#" className="w-11 h-11 md:w-10 md:h-10 rounded-full border border-white/10 flex items-center justify-center text-white/70 hover:bg-accent hover:text-white hover:border-accent transition-all duration-300">
                 <Facebook size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/70 hover:bg-accent hover:text-white hover:border-accent transition-all duration-300">
+              <a href="#" className="w-11 h-11 md:w-10 md:h-10 rounded-full border border-white/10 flex items-center justify-center text-white/70 hover:bg-accent hover:text-white hover:border-accent transition-all duration-300">
                 <Twitter size={18} />
               </a>
             </div>

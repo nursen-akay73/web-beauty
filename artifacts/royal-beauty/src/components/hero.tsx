@@ -220,7 +220,7 @@ export default function Hero() {
               <button
                 key={i}
                 onClick={() => goToSlide(i)}
-                className="transition-all duration-400"
+                className="p-3 -m-3 transition-all duration-400"
                 aria-label={`Slayt ${i + 1}`}
               >
                 <div

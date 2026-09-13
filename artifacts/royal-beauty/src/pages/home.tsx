@@ -6,6 +6,7 @@ import Services from "@/components/services";
 import SopranoSection from "@/components/soprano-section";
 import Values from "@/components/values";
 import Gallery from "@/components/gallery";
+import InstagramFeed from "@/components/instagram-feed";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
 import WhatsAppButton from "@/components/whatsapp-button";
@@ -64,6 +65,10 @@ export default function Home() {
 
         <div className="reveal-section section-fade-in">
           <Gallery />
+        </div>
+
+        <div className="reveal-section section-fade-in">
+          <InstagramFeed />
         </div>
 
         <div className="reveal-section section-fade-in">

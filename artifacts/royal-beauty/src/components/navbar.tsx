@@ -96,7 +96,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className={`md:hidden p-2 transition-colors ${scrolled ? "text-primary" : "text-primary"}`}
+          className={`md:hidden p-2.5 -mr-2.5 min-w-11 min-h-11 flex items-center justify-center transition-colors ${scrolled ? "text-primary" : "text-primary"}`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -118,7 +118,7 @@ export default function Navbar() {
                 <li key={link.href}>
                   <button
                     onClick={() => scrollTo(link.href)}
-                    className="text-2xl font-serif text-primary hover:text-accent transition-colors"
+                    className="block py-2.5 -my-2.5 text-2xl font-serif text-primary hover:text-accent transition-colors"
                   >
                     {link.label}
                   </button>

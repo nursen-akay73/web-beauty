@@ -93,14 +93,14 @@ function PreferredDatePicker({
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="text-xs px-3 py-1.5 rounded-full"
+                className="text-xs px-4 py-2.5 rounded-full min-h-11"
                 style={{ color: "#3B0A45", backgroundColor: "rgba(59,10,69,0.06)" }}
               >
                 Kapat
               </button>
             </div>
 
-            <div className="flex justify-center rounded-2xl border p-3" style={{ borderColor: "rgba(59,10,69,0.1)", backgroundColor: "#FBF8FC" }}>
+            <div className="flex justify-center overflow-x-auto rounded-2xl border p-2 sm:p-3" style={{ borderColor: "rgba(59,10,69,0.1)", backgroundColor: "#FBF8FC" }}>
               <Calendar
                 mode="single"
                 locale={tr}
@@ -110,7 +110,7 @@ function PreferredDatePicker({
                   setOpen(false);
                 }}
                 disabled={{ before: today }}
-                className="[--cell-size:2.75rem] bg-transparent p-0"
+                className="[--cell-size:2.25rem] sm:[--cell-size:2.75rem] bg-transparent p-0"
                 classNames={{
                   month_caption: "flex h-10 w-full items-center justify-center text-base font-semibold",
                   weekday: "text-[#3B0A45]/70 flex-1 select-none text-center text-xs font-medium",
@@ -455,7 +455,7 @@ export default function Contact() {
                 <div className="flex justify-center pt-2">
                   <Button
                     type="submit"
-                    className="royal-btn btn-randevu-shimmer uppercase tracking-[0.25em] px-16 py-4 font-bold text-sm shadow-lg hover:shadow-xl transition-all duration-300 rounded-full hover:-translate-y-0.5"
+                    className="royal-btn btn-randevu-shimmer uppercase tracking-[0.25em] px-10 sm:px-16 py-4 font-bold text-sm shadow-lg hover:shadow-xl transition-all duration-300 rounded-full hover:-translate-y-0.5"
                     style={{
                       backgroundColor: "#3B0A45",
                       color: "#D4AF37",
