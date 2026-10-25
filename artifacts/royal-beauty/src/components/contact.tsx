@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Clock, ChevronDown, Instagram, CalendarIcon } from "lucide-react";
+import { MapPin, Phone, Clock, ChevronDown, Instagram, CalendarIcon, ArrowRight } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -9,10 +9,11 @@ import { Calendar } from "@/components/ui/calendar";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion as m } from "framer-motion";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
+import ParticleField from "@/components/particle-field";
 
 const SERVICE_OPTIONS = [
   "Lazer Epilasyon",
@@ -39,7 +40,70 @@ const formSchema = z.object({
 });
 
 const fieldClass =
-  "w-full h-12 rounded-full border bg-white/90 px-5 text-sm shadow-sm transition-all duration-200 focus-visible:ring-2 focus-visible:ring-[#D4AF37]/40 focus-visible:border-[#D4AF37] placeholder:text-[#9ca3af]";
+  "w-full h-14 !rounded-none border bg-white px-5 text-sm shadow-none transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#3B0A45] placeholder:text-[#9ca3af]";
+
+const monoLabel = "font-mono text-[11px] uppercase tracking-[0.18em] text-[#3B0A45]/55";
+
+// Pzt–Cmt 09:00–19:30 (see "Çalışma Saatleri" below).
+const OPEN_MIN = 9 * 60;
+const CLOSE_MIN = 19 * 60 + 30;
+
+function nextSalonBoundary(now: Date): { open: boolean; target: Date } {
+  const minutes = now.getHours() * 60 + now.getMinutes();
+  const workday = now.getDay() !== 0;
+  if (workday && minutes >= OPEN_MIN && minutes < CLOSE_MIN) {
+    const target = new Date(now);
+    target.setHours(19, 30, 0, 0);
+    return { open: true, target };
+  }
+  const target = new Date(now);
+  target.setHours(9, 0, 0, 0);
+  if (!workday || minutes >= OPEN_MIN) target.setDate(target.getDate() + 1);
+  if (target.getDay() === 0) target.setDate(target.getDate() + 1);
+  return { open: false, target };
+}
+
+function SalonCountdown() {
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const { open, target } = nextSalonBoundary(now);
+  const total = Math.max(0, Math.floor((target.getTime() - now.getTime()) / 1000));
+  const units = [
+    { v: Math.floor(total / 86400), l: "Gün" },
+    { v: Math.floor((total % 86400) / 3600), l: "Saat" },
+    { v: Math.floor((total % 3600) / 60), l: "Dakika" },
+    { v: total % 60, l: "Saniye" },
+  ].filter((u, i) => i > 0 || u.v > 0);
+
+  return (
+    <div className="mb-8">
+      <p className={`${monoLabel} mb-3 flex items-center gap-2`}>
+        <span
+          className="inline-block w-2 h-2 rounded-full"
+          style={{ backgroundColor: open ? "#2E9E5B" : "#D4AF37" }}
+        />
+        {open ? "Şu an açığız · Kapanışa kalan" : "Şu an kapalıyız · Açılışa kalan"}
+      </p>
+      <div className="flex items-start gap-3 sm:gap-5">
+        {units.map((u, i) => (
+          <div key={u.l} className="flex items-start gap-3 sm:gap-5">
+            {i > 0 && <span className="text-2xl leading-none text-[#3B0A45]/25 mt-1">:</span>}
+            <div className="text-center">
+              <div className="font-serif text-4xl sm:text-5xl leading-none tabular-nums text-[#3B0A45]">
+                {String(u.v).padStart(2, "0")}
+              </div>
+              <div className="text-[11px] text-[#3B0A45]/55 mt-2">{u.l}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function PreferredDatePicker({
   value,
@@ -57,10 +121,9 @@ function PreferredDatePicker({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full h-12 flex items-center justify-between rounded-full border bg-white/90 px-5 text-left text-sm shadow-sm transition-all duration-200 focus:outline-none"
+        className="w-full h-14 flex items-center justify-between border bg-white px-5 text-left text-sm transition-all duration-200 focus:outline-none"
         style={{
-          borderColor: open ? "#D4AF37" : "rgba(59,10,69,0.12)",
-          boxShadow: open ? "0 0 0 2px rgba(212,175,55,0.35)" : undefined,
+          borderColor: open ? "#3B0A45" : "rgba(59,10,69,0.15)",
           color: value ? "#3B0A45" : "#9ca3af",
         }}
       >
@@ -153,10 +216,9 @@ function ServiceSelect({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full h-12 flex items-center justify-between rounded-full border bg-white/90 px-5 text-left text-sm shadow-sm transition-all duration-200 focus:outline-none"
+        className="w-full h-14 flex items-center justify-between border bg-white px-5 text-left text-sm transition-all duration-200 focus:outline-none"
         style={{
-          borderColor: open ? "#D4AF37" : "rgba(59,10,69,0.12)",
-          boxShadow: open ? "0 0 0 2px rgba(212,175,55,0.35)" : undefined,
+          borderColor: open ? "#3B0A45" : "rgba(59,10,69,0.15)",
           color: value ? "#3B0A45" : "#9ca3af",
         }}
       >
@@ -221,6 +283,15 @@ export default function Contact() {
     },
   });
 
+  const watched = form.watch();
+  const filled = [
+    watched.name?.trim().length >= 2,
+    watched.phone?.trim().length >= 10,
+    !!watched.service,
+    !!watched.preferredDate,
+    !!watched.message?.trim(),
+  ].filter(Boolean).length;
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     const lines = [
       "Merhaba, randevu talebim var.",
@@ -256,6 +327,7 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 md:py-32 relative" style={{ backgroundColor: "#3B0A45" }}>
       <div className="absolute top-0 right-0 w-1/2 h-full pointer-events-none" style={{ backgroundColor: "rgba(212,175,55,0.04)" }} />
+      <ParticleField className="absolute inset-0 w-full h-full" />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
@@ -349,25 +421,45 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="p-8 md:p-12 shadow-2xl rounded-[2rem]"
+            className="relative p-8 md:p-12 shadow-2xl"
             style={{
-              background:
-                "linear-gradient(165deg, #FFFFFF 0%, #F8F4F9 55%, #F3ECF5 100%)",
-              border: "1px solid rgba(212,175,55,0.18)",
+              background: "#FBF9FC",
+              border: "1px solid rgba(212,175,55,0.25)",
             }}
           >
-            <h3 className="text-2xl font-serif mb-8" style={{ color: "#3B0A45" }}>Randevu Formu</h3>
+            <p className={`${monoLabel} mb-5`}>Randevu Formu — Royal Güzellik</p>
+            <h3 className="font-serif text-3xl md:text-4xl leading-[1.1] mb-8" style={{ color: "#3B0A45" }}>
+              Size ayrılan zaman.
+              <br />
+              <span className="italic" style={{ color: "#B8922E" }}>Yalnızca sizin için.</span>
+            </h3>
+
+            <SalonCountdown />
+
+            <div className="mb-10">
+              <div className="flex items-center justify-between font-mono text-xs mb-3">
+                <span style={{ color: "#3B0A45" }}>{String(filled).padStart(2, "0")} / 05 alan dolduruldu</span>
+                <span className="text-[#3B0A45]/45">Zorunlu: ad, telefon</span>
+              </div>
+              <div className="h-[2px] w-full" style={{ backgroundColor: "rgba(59,10,69,0.1)" }}>
+                <div
+                  className="h-full transition-[width] duration-500 ease-out"
+                  style={{ width: `${(filled / 5) * 100}%`, background: "linear-gradient(90deg, #D4AF37, #f7e7a1)" }}
+                />
+              </div>
+            </div>
 
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-8">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6">
                 <FormField
                   control={form.control}
                   name="name"
                   render={({ field }) => (
                     <FormItem>
+                      <p className={monoLabel}>Ad Soyad *</p>
                       <FormControl>
                         <Input
-                          placeholder="Adınız Soyadınız *"
+                          placeholder="Adınız Soyadınız"
                           className={fieldClass}
                           style={{ borderColor: "rgba(59,10,69,0.12)", color: "#3B0A45" }}
                           {...field}
@@ -383,9 +475,10 @@ export default function Contact() {
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
+                      <p className={monoLabel}>Telefon *</p>
                       <FormControl>
                         <Input
-                          placeholder="Telefon Numaranız *"
+                          placeholder="05XX XXX XX XX"
                           className={fieldClass}
                           style={{ borderColor: "rgba(59,10,69,0.12)", color: "#3B0A45" }}
                           {...field}
@@ -402,6 +495,7 @@ export default function Contact() {
                   name="service"
                   render={({ field }) => (
                     <FormItem>
+                      <p className={monoLabel}>Hizmet</p>
                       <FormControl>
                         <ServiceSelect
                           value={field.value ?? ""}
@@ -418,6 +512,7 @@ export default function Contact() {
                   name="preferredDate"
                   render={({ field }) => (
                     <FormItem>
+                      <p className={monoLabel}>Tercih Edilen Tarih</p>
                       <FormControl>
                         <PreferredDatePicker
                           value={field.value}
@@ -434,14 +529,14 @@ export default function Contact() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
+                      <p className={monoLabel}>Not</p>
                       <FormControl>
                         <Textarea
                           placeholder="Notunuz (Opsiyonel)"
-                          className="min-h-[120px] w-full border bg-white/90 px-5 py-4 text-sm shadow-sm transition-all duration-200 focus-visible:ring-2 focus-visible:ring-[#D4AF37]/40 focus-visible:border-[#D4AF37] placeholder:text-[#9ca3af] !rounded-[2rem] !resize-none"
+                          className="min-h-[110px] w-full border bg-white px-5 py-4 text-sm shadow-none transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#3B0A45] placeholder:text-[#9ca3af] !rounded-none !resize-none"
                           style={{
-                            borderColor: "rgba(59,10,69,0.12)",
+                            borderColor: "rgba(59,10,69,0.15)",
                             color: "#3B0A45",
-                            borderRadius: "2rem",
                             resize: "none",
                           }}
                           {...field}
@@ -452,19 +547,23 @@ export default function Contact() {
                   )}
                 />
 
-                <div className="flex justify-center pt-2">
+                <div className="pt-2">
                   <Button
                     type="submit"
-                    className="royal-btn btn-randevu-shimmer uppercase tracking-[0.25em] px-10 sm:px-16 py-4 font-bold text-sm shadow-lg hover:shadow-xl transition-all duration-300 rounded-full hover:-translate-y-0.5"
-                    style={{
-                      backgroundColor: "#3B0A45",
-                      color: "#D4AF37",
-                      border: "1px solid rgba(212,175,55,0.4)",
-                      minWidth: "220px",
-                    }}
+                    className="group w-full h-14 !rounded-none flex items-center justify-between px-6 text-sm font-medium transition-colors duration-300 hover:bg-[#2D0B3F]"
+                    style={{ backgroundColor: "#3B0A45", color: "#fff" }}
                   >
-                    Gönder
+                    <span>Randevu talebimi gönder</span>
+                    <ArrowRight
+                      size={18}
+                      className="transition-transform duration-300 group-hover:translate-x-1.5"
+                      style={{ color: "#D4AF37" }}
+                    />
                   </Button>
+                  <p className="mt-5 text-center text-xs leading-relaxed text-[#3B0A45]/55 max-w-sm mx-auto">
+                    Gönder'e bastığınızda WhatsApp açılır; mesajınızı kontrol edip göndermeniz yeterli.
+                    Size en kısa sürede dönüş yapılır.
+                  </p>
                 </div>
               </form>
             </Form>
