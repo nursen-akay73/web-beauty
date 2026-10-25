@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronRight } from "lucide-react";
+import LayeredCard from "./layered-card";
+import SkincareStory from "./skincare-story";
 import ServiceModal, { SERVICE_DETAILS, type ServiceDetail } from "./service-modal";
 
 const serviceCards = [
@@ -33,6 +35,7 @@ const serviceCards = [
 export default function Services() {
   const [listSelected, setListSelected] = useState<number | null>(null);
   const [modalService, setModalService] = useState<ServiceDetail | null>(null);
+  const [storyOpen, setStoryOpen] = useState(false);
 
   const openModal = (name: string) => {
     const found = SERVICE_DETAILS.find((s) => s.name === name);
@@ -40,6 +43,10 @@ export default function Services() {
   };
 
   const openModalCard = (title: string) => {
+    if (title === "Cilt Bakımı") {
+      setStoryOpen(true);
+      return;
+    }
     const found = SERVICE_DETAILS.find((s) => s.name === title);
     if (found) setModalService(found);
   };
@@ -55,6 +62,19 @@ export default function Services() {
         service={modalService}
         onClose={() => setModalService(null)}
         onBook={scrollToContact}
+      />
+
+      <SkincareStory
+        open={storyOpen}
+        onClose={() => setStoryOpen(false)}
+        onBook={() => {
+          setStoryOpen(false);
+          setTimeout(scrollToContact, 700);
+        }}
+        onDetails={() => {
+          setStoryOpen(false);
+          setTimeout(() => openModal("Cilt Bakımı"), 700);
+        }}
       />
 
       <section id="services" className="relative" style={{ backgroundColor: "#3B0A45" }}>
@@ -112,32 +132,20 @@ export default function Services() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: service.delay, duration: 0.8 }}
-                  className="group relative overflow-hidden cursor-pointer"
-                  style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
-                  onClick={() => openModalCard(service.title)}
                 >
-                  <div className="aspect-square overflow-hidden">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                    />
-                    <div
-                      className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-30"
-                      style={{ backgroundColor: "rgba(59,10,69,0.4)" }}
-                    />
-                  </div>
-
-                  <div className="p-7 relative z-10 transition-transform duration-500 group-hover:-translate-y-3" style={{ backgroundColor: "rgba(45,11,63,0.9)" }}>
+                  <LayeredCard
+                    image={service.image}
+                    imageAlt={service.title}
+                    onClick={() => openModalCard(service.title)}
+                    className="h-full"
+                  >
                     <h3 className="text-xl font-serif text-white mb-3">{service.title}</h3>
                     <div className="h-[1px] w-10 mb-5 transition-all duration-500 group-hover:w-20" style={{ backgroundColor: "#D4AF37" }} />
                     <p className="text-white/60 font-light text-sm leading-relaxed mb-5">{service.description}</p>
                     <button className="flex items-center gap-2 text-xs uppercase tracking-widest font-semibold transition-colors" style={{ color: "#D4AF37" }}>
                       Detaylı İncele <ArrowRight size={13} />
                     </button>
-                  </div>
-
-                  <div className="absolute inset-0 border border-transparent group-hover:border-[#D4AF37] transition-colors duration-500 pointer-events-none z-20" />
+                  </LayeredCard>
                 </motion.div>
               ))}
             </div>

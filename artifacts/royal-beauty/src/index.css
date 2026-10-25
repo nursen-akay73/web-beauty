@@ -268,3 +268,113 @@
   pointer-events: none;
   border-radius: inherit;
 }
+
+/* Skin analysis — scan line + pulsing markers inside the split reveal */
+@keyframes skinScan {
+  0%   { top: -4rem; }
+  100% { top: 100%; }
+}
+.skin-scan-line {
+  background: linear-gradient(to bottom, transparent, rgba(247, 231, 161, 0.28) 70%, rgba(247, 231, 161, 0.7) 98%, transparent);
+  animation: skinScan 3.6s linear infinite;
+}
+@keyframes skinMarkerPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); }
+  100% { box-shadow: 0 0 0 12px rgba(212, 175, 55, 0); }
+}
+.skin-marker {
+  animation: skinMarkerPulse 1.8s ease-out infinite;
+}
+
+/* Liquid gold navbar — flowing gradient border that also follows the cursor */
+@property --gold-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes goldFlow {
+  to { --gold-angle: 360deg; }
+}
+.liquid-gold-nav {
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  padding: 1.5px;
+  border-radius: 9999px;
+  background:
+    radial-gradient(140px circle at var(--mx) var(--my), rgba(255, 248, 214, 0.95), transparent 70%),
+    conic-gradient(from var(--gold-angle), #6b4f12, #D4AF37, #f7e7a1, #b8922e, #6b4f12, #D4AF37, #fff3c4, #8a6a1f, #6b4f12);
+  animation: goldFlow 6s linear infinite;
+}
+.liquid-gold-nav::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: inherit;
+  filter: blur(14px);
+  opacity: 0.35;
+  z-index: -1;
+  animation: goldFlow 6s linear infinite;
+  transition: opacity 0.4s ease;
+}
+.liquid-gold-nav:hover::before {
+  opacity: 0.6;
+}
+.liquid-gold-nav__inner {
+  border-radius: inherit;
+  background: rgba(45, 11, 63, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Roll-up link: label slides up and a gold copy rolls in from below */
+.roll-link {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1.4;
+}
+.roll-link > span {
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.roll-link > span + span {
+  position: absolute;
+  inset: 0;
+  transform: translateY(100%);
+  color: #D4AF37;
+}
+.roll-link:hover > span:first-child,
+.roll-link:focus-visible > span:first-child {
+  transform: translateY(-100%);
+}
+.roll-link:hover > span + span,
+.roll-link:focus-visible > span + span {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-gold-nav,
+  .liquid-gold-nav::before,
+  .skin-scan-line,
+  .skin-marker {
+    animation: none;
+  }
+  .skin-scan-line {
+    display: none;
+  }
+}
+
+/* Skincare story overlay — treatments marquee */
+@keyframes storyMarquee {
+  to { transform: translateX(-50%); }
+}
+.story-marquee {
+  animation: storyMarquee 22s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .story-marquee {
+    animation: none;
+  }
+}

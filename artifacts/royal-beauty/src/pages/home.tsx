@@ -3,8 +3,10 @@ import Navbar from "@/components/navbar";
 import Hero from "@/components/hero";
 import About from "@/components/about";
 import Services from "@/components/services";
+import SkinAnalysis from "@/components/skin-analysis";
 import SopranoSection from "@/components/soprano-section";
 import Values from "@/components/values";
+import SkincareFlow from "@/components/skincare-flow";
 import Gallery from "@/components/gallery";
 import InstagramFeed from "@/components/instagram-feed";
 import Contact from "@/components/contact";
@@ -54,6 +56,10 @@ export default function Home() {
           <Services />
         </div>
 
+        <div className="reveal-section section-fade-in">
+          <SkinAnalysis />
+        </div>
+
         {/* Soprano Titanium Technology Section */}
         <div className="reveal-section section-fade-in">
           <SopranoSection />
@@ -61,6 +67,10 @@ export default function Home() {
 
         <div className="reveal-section section-fade-in">
           <Values />
+        </div>
+
+        <div className="reveal-section section-fade-in">
+          <SkincareFlow />
         </div>
 
         <div className="reveal-section section-fade-in">
