@@ -46,7 +46,7 @@ const formSchema = z.object({
 });
 
 const fieldClass =
-  "w-full h-14 !rounded-none border bg-white px-5 text-sm shadow-none transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#3B0A45] placeholder:text-[#9ca3af]";
+  "w-full h-14 !rounded-2xl border bg-white px-5 text-sm shadow-none transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#3B0A45] placeholder:text-[#9ca3af]";
 
 const monoLabel = "font-mono text-[11px] uppercase tracking-[0.18em] text-[#3B0A45]/55";
 
@@ -127,7 +127,7 @@ function PreferredDatePicker({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full h-14 flex items-center justify-between border bg-white px-5 text-left text-sm transition-all duration-200 focus:outline-none"
+        className="w-full h-14 flex items-center justify-between rounded-2xl border bg-white px-5 text-left text-sm transition-all duration-200 focus:outline-none"
         style={{
           borderColor: open ? "#3B0A45" : "rgba(59,10,69,0.15)",
           color: value ? "#3B0A45" : "#9ca3af",
@@ -222,7 +222,7 @@ function ServiceSelect({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full h-14 flex items-center justify-between border bg-white px-5 text-left text-sm transition-all duration-200 focus:outline-none"
+        className="w-full h-14 flex items-center justify-between rounded-2xl border bg-white px-5 text-left text-sm transition-all duration-200 focus:outline-none"
         style={{
           borderColor: open ? "#3B0A45" : "rgba(59,10,69,0.15)",
           color: value ? "#3B0A45" : "#9ca3af",
@@ -437,7 +437,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="relative p-8 md:p-12 shadow-2xl"
+            className="relative p-8 md:p-12 shadow-2xl rounded-[2rem]"
             style={{
               background: "#FBF9FC",
               border: "1px solid rgba(212,175,55,0.25)",
@@ -549,7 +549,7 @@ export default function Contact() {
                       <FormControl>
                         <Textarea
                           placeholder="Notunuz (Opsiyonel)"
-                          className="min-h-[110px] w-full border bg-white px-5 py-4 text-sm shadow-none transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#3B0A45] placeholder:text-[#9ca3af] !rounded-none !resize-none"
+                          className="min-h-[110px] w-full border bg-white px-5 py-4 text-sm shadow-none transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#3B0A45] placeholder:text-[#9ca3af] !rounded-2xl !resize-none"
                           style={{
                             borderColor: "rgba(59,10,69,0.15)",
                             color: "#3B0A45",
@@ -566,7 +566,7 @@ export default function Contact() {
                 <div className="pt-2">
                   <Button
                     type="submit"
-                    className="group w-full h-14 !rounded-none flex items-center justify-between px-6 text-sm font-medium transition-colors duration-300 hover:bg-[#2D0B3F]"
+                    className="group w-full h-14 !rounded-full flex items-center justify-between px-6 text-sm font-medium transition-colors duration-300 hover:bg-[#2D0B3F]"
                     style={{ backgroundColor: "#3B0A45", color: "#fff" }}
                   >
                     <span>Randevu talebimi gönder</span>
