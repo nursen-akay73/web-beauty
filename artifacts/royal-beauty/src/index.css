@@ -160,7 +160,10 @@
 }
 .section-fade-in.visible {
   opacity: 1;
-  transform: translateY(0);
+  /* "none", not translateY(0): any transform left on the wrapper turns it into the
+     containing block for position: fixed, and the service drawers would open inside
+     the section instead of over the screen. */
+  transform: none;
 }
 
 /* Ken Burns hero animation — zoom in */
