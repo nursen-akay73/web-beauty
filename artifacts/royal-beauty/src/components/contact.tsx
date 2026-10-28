@@ -33,7 +33,13 @@ const SERVICE_OPTIONS = [
 
 const formSchema = z.object({
   name: z.string().min(2, "İsim en az 2 karakter olmalıdır"),
-  phone: z.string().min(10, "Geçerli bir telefon numarası giriniz"),
+  phone: z
+    .string()
+    .refine((v) => /^\+?[\d\s()-]+$/.test(v.trim()), "Geçerli bir telefon numarası giriniz")
+    .refine((v) => {
+      const digits = v.replace(/\D/g, "").length;
+      return digits >= 10 && digits <= 13;
+    }, "Geçerli bir telefon numarası giriniz"),
   service: z.string().optional(),
   preferredDate: z.date().optional(),
   message: z.string().optional(),
@@ -286,7 +292,7 @@ export default function Contact() {
   const watched = form.watch();
   const filled = [
     watched.name?.trim().length >= 2,
-    watched.phone?.trim().length >= 10,
+    watched.phone?.replace(/\D/g, "").length >= 10,
     !!watched.service,
     !!watched.preferredDate,
     !!watched.message?.trim(),
@@ -315,7 +321,17 @@ export default function Contact() {
     }
 
     const text = encodeURIComponent(lines.join("\n"));
-    window.open(`https://wa.me/905453632026?text=${text}`, "_blank", "noopener,noreferrer");
+    const url = `https://wa.me/905453632026?text=${text}`;
+    // The form validates asynchronously, so by now the click no longer counts as a
+    // user gesture and Safari/iOS may block the new tab. window.open returns null
+    // when blocked (it always does with "noopener"), so open without it, cut the
+    // opener by hand, and fall back to this tab so the message is never lost.
+    const win = window.open(url, "_blank");
+    if (win) {
+      win.opener = null;
+    } else {
+      window.location.href = url;
+    }
 
     toast({
       title: "WhatsApp açılıyor",
