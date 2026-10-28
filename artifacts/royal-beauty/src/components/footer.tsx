@@ -1,11 +1,20 @@
 import { Link } from "wouter";
 import { Instagram, Facebook, Twitter } from "lucide-react";
+import SilkWave from "@/components/silk-wave";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#2D0B3F] text-primary-foreground border-t border-white/5">
+    <footer className="bg-[#2D0B3F] text-primary-foreground">
+      {/* Silk ribbon carrying the contact section's purple down into the footer */}
+      <div
+        className="relative h-40 md:h-64 overflow-hidden"
+        style={{ background: "linear-gradient(180deg, #3B0A45 0%, #2D0B3F 100%)" }}
+      >
+        <SilkWave className="absolute inset-0 w-full h-full" />
+      </div>
+
       <div className="container mx-auto px-6 md:px-12 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           
