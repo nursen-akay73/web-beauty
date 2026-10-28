@@ -454,3 +454,74 @@
   transform: translateX(380%) skewX(-22deg);
   transition: transform 0.8s ease;
 }
+
+/* Floating AI hairstyle button — a turning gold/lilac ring around a purple pill */
+@keyframes aiHairSpin {
+  to { transform: rotate(360deg); }
+}
+@keyframes aiHairTwinkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.25) rotate(18deg); opacity: 0.75; }
+}
+@keyframes aiHairShine {
+  0%, 55% { transform: translateX(-120%) skewX(-20deg); }
+  100% { transform: translateX(320%) skewX(-20deg); }
+}
+.ai-hair-btn {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  padding: 2px;
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(59, 10, 69, 0.35), 0 0 24px rgba(212, 175, 55, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.ai-hair-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(59, 10, 69, 0.4), 0 0 34px rgba(212, 175, 55, 0.55);
+}
+.ai-hair-btn::before {
+  content: "";
+  position: absolute;
+  inset: -200%;
+  z-index: -1;
+  background: conic-gradient(from 0deg, #D4AF37, #F7E7A1, #C8AAE6, #6A0DAD, #C8AAE6, #D4AF37);
+  animation: aiHairSpin 3.5s linear infinite;
+}
+.ai-hair-btn__inner {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.1rem 0.85rem 1rem;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at 50% 120%, #6A0DAD 0%, #3B0A45 65%);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.ai-hair-btn__inner::after {
+  content: "";
+  position: absolute;
+  inset: -50% auto -50% 0;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  animation: aiHairShine 3.2s ease-in-out infinite;
+}
+.ai-hair-btn__spark {
+  color: #D4AF37;
+  animation: aiHairTwinkle 2.4s ease-in-out infinite;
+}
+.ai-hair-btn__badge {
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(212, 175, 55, 0.18);
+  color: #F7E7A1;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+}
