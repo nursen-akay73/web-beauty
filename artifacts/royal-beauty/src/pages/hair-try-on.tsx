@@ -265,12 +265,49 @@ export default function HairTryOn() {
         </motion.div>
       </section>
 
+      {/* Salon hair-wash film rising in under the headline, as on lustréa.framer.website.
+          Clip: Pexels video 7575399 (free to use), trimmed to a silent 12 s loop. */}
+      <motion.div
+        initial={{ opacity: 0, y: 120, clipPath: "inset(12% 6% 0% 6% round 2rem)" }}
+        animate={{ opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0% round 2rem)" }}
+        transition={{ duration: 1.2, delay: 0.8, ease }}
+        className="relative mx-4 md:mx-8 mt-12 md:mt-16 h-[52vh] md:h-[70vh] overflow-hidden rounded-[2rem]"
+      >
+        <video
+          src="/videos/sac-yikama.mp4"
+          poster="/videos/sac-yikama-poster.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to top, rgba(59,10,69,0.75) 0%, rgba(59,10,69,0.15) 45%, transparent 70%)" }}
+        />
+        <div className="absolute inset-x-6 md:inset-x-10 bottom-6 md:bottom-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4 text-white">
+          <p className="font-serif text-2xl md:text-4xl leading-tight max-w-lg">
+            Salonda uzman eller, <span className="italic" style={{ color: "#D4AF37" }}>evde yapay zekâ.</span>
+          </p>
+          <a
+            href="#studyo"
+            className="inline-flex items-center gap-2 self-start md:self-auto rounded-full px-6 h-12 text-sm font-medium"
+            style={{ backgroundColor: "#D4AF37", color: "#3B0A45" }}
+          >
+            Hemen dene <ArrowRight size={16} />
+          </a>
+        </div>
+      </motion.div>
+
       <motion.section
         id="studyo"
-        initial={{ opacity: 0, y: 140, clipPath: "inset(10% 5% 0% 5% round 2rem)" }}
-        animate={{ opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0% round 2rem)" }}
-        transition={{ duration: 1.2, delay: 0.9, ease }}
-        className="relative mx-4 md:mx-8 mt-12 md:mt-16 mb-10 rounded-[2rem] overflow-hidden"
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 1, ease }}
+        className="relative mx-4 md:mx-8 mt-6 md:mt-8 mb-10 rounded-[2rem] overflow-hidden scroll-mt-6"
         style={{ backgroundColor: "#3B0A45" }}
       >
         <ParticleField className="absolute inset-0 w-full h-full" />
