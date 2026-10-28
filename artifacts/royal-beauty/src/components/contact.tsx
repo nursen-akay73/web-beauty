@@ -33,14 +33,20 @@ const SERVICE_OPTIONS = [
 
 const formSchema = z.object({
   name: z.string().min(2, "İsim en az 2 karakter olmalıdır"),
-  phone: z.string().min(10, "Geçerli bir telefon numarası giriniz"),
+  phone: z
+    .string()
+    .refine((v) => /^\+?[\d\s()-]+$/.test(v.trim()), "Geçerli bir telefon numarası giriniz")
+    .refine((v) => {
+      const digits = v.replace(/\D/g, "").length;
+      return digits >= 10 && digits <= 13;
+    }, "Geçerli bir telefon numarası giriniz"),
   service: z.string().optional(),
   preferredDate: z.date().optional(),
   message: z.string().optional(),
 });
 
 const fieldClass =
-  "w-full h-14 !rounded-none border bg-white px-5 text-sm shadow-none transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#3B0A45] placeholder:text-[#9ca3af]";
+  "w-full h-14 !rounded-2xl border bg-white px-5 text-sm shadow-none transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#3B0A45] placeholder:text-[#9ca3af]";
 
 const monoLabel = "font-mono text-[11px] uppercase tracking-[0.18em] text-[#3B0A45]/55";
 
@@ -121,7 +127,7 @@ function PreferredDatePicker({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full h-14 flex items-center justify-between border bg-white px-5 text-left text-sm transition-all duration-200 focus:outline-none"
+        className="w-full h-14 flex items-center justify-between rounded-2xl border bg-white px-5 text-left text-sm transition-all duration-200 focus:outline-none"
         style={{
           borderColor: open ? "#3B0A45" : "rgba(59,10,69,0.15)",
           color: value ? "#3B0A45" : "#9ca3af",
@@ -216,7 +222,7 @@ function ServiceSelect({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full h-14 flex items-center justify-between border bg-white px-5 text-left text-sm transition-all duration-200 focus:outline-none"
+        className="w-full h-14 flex items-center justify-between rounded-2xl border bg-white px-5 text-left text-sm transition-all duration-200 focus:outline-none"
         style={{
           borderColor: open ? "#3B0A45" : "rgba(59,10,69,0.15)",
           color: value ? "#3B0A45" : "#9ca3af",
@@ -286,7 +292,7 @@ export default function Contact() {
   const watched = form.watch();
   const filled = [
     watched.name?.trim().length >= 2,
-    watched.phone?.trim().length >= 10,
+    watched.phone?.replace(/\D/g, "").length >= 10,
     !!watched.service,
     !!watched.preferredDate,
     !!watched.message?.trim(),
@@ -315,7 +321,17 @@ export default function Contact() {
     }
 
     const text = encodeURIComponent(lines.join("\n"));
-    window.open(`https://wa.me/905453632026?text=${text}`, "_blank", "noopener,noreferrer");
+    const url = `https://wa.me/905453632026?text=${text}`;
+    // The form validates asynchronously, so by now the click no longer counts as a
+    // user gesture and Safari/iOS may block the new tab. window.open returns null
+    // when blocked (it always does with "noopener"), so open without it, cut the
+    // opener by hand, and fall back to this tab so the message is never lost.
+    const win = window.open(url, "_blank");
+    if (win) {
+      win.opener = null;
+    } else {
+      window.location.href = url;
+    }
 
     toast({
       title: "WhatsApp açılıyor",
@@ -421,7 +437,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="relative p-8 md:p-12 shadow-2xl"
+            className="relative p-8 md:p-12 shadow-2xl rounded-[2rem]"
             style={{
               background: "#FBF9FC",
               border: "1px solid rgba(212,175,55,0.25)",
@@ -533,7 +549,7 @@ export default function Contact() {
                       <FormControl>
                         <Textarea
                           placeholder="Notunuz (Opsiyonel)"
-                          className="min-h-[110px] w-full border bg-white px-5 py-4 text-sm shadow-none transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#3B0A45] placeholder:text-[#9ca3af] !rounded-none !resize-none"
+                          className="min-h-[110px] w-full border bg-white px-5 py-4 text-sm shadow-none transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#3B0A45] placeholder:text-[#9ca3af] !rounded-2xl !resize-none"
                           style={{
                             borderColor: "rgba(59,10,69,0.15)",
                             color: "#3B0A45",
@@ -550,7 +566,7 @@ export default function Contact() {
                 <div className="pt-2">
                   <Button
                     type="submit"
-                    className="group w-full h-14 !rounded-none flex items-center justify-between px-6 text-sm font-medium transition-colors duration-300 hover:bg-[#2D0B3F]"
+                    className="group w-full h-14 !rounded-full flex items-center justify-between px-6 text-sm font-medium transition-colors duration-300 hover:bg-[#2D0B3F]"
                     style={{ backgroundColor: "#3B0A45", color: "#fff" }}
                   >
                     <span>Randevu talebimi gönder</span>

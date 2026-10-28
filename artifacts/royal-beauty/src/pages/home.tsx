@@ -14,6 +14,8 @@ import Footer from "@/components/footer";
 import WhatsAppButton from "@/components/whatsapp-button";
 import WelcomeSplash from "@/components/welcome-splash";
 import PageShimmer from "@/components/page-shimmer";
+import CursorTrail from "@/components/cursor-trail";
+import AiHairButton from "@/components/ai-hair-button";
 
 function useSectionReveal() {
   useEffect(() => {
@@ -88,6 +90,8 @@ export default function Home() {
 
       <Footer />
       <WhatsAppButton />
+      <AiHairButton />
+      <CursorTrail />
     </div>
   );
 }

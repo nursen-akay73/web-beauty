@@ -1,11 +1,21 @@
 import { Link } from "wouter";
 import { Instagram, Facebook, Twitter } from "lucide-react";
+import SilkWave from "@/components/silk-wave";
+import GlowLink from "@/components/glow-link";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#2D0B3F] text-primary-foreground border-t border-white/5">
+    <footer className="bg-[#2D0B3F] text-primary-foreground">
+      {/* Silk ribbon carrying the contact section's purple down into the footer */}
+      <div
+        className="relative h-40 md:h-64 overflow-hidden"
+        style={{ background: "linear-gradient(180deg, #3B0A45 0%, #2D0B3F 100%)" }}
+      >
+        <SilkWave className="absolute inset-0 w-full h-full" />
+      </div>
+
       <div className="container mx-auto px-6 md:px-12 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           
@@ -38,24 +48,24 @@ export default function Footer() {
 
           <div>
             <h4 className="font-serif text-lg mb-6 text-white">Hızlı Menü</h4>
-            <ul className="space-y-3">
-              <li><a href="#about" className="text-primary-foreground/60 hover:text-accent text-sm font-light transition-colors">Hakkımızda</a></li>
-              <li><a href="#services" className="text-primary-foreground/60 hover:text-accent text-sm font-light transition-colors">Hizmetlerimiz</a></li>
-              <li><a href="#values" className="text-primary-foreground/60 hover:text-accent text-sm font-light transition-colors">Değerlerimiz</a></li>
-              <li><a href="#gallery" className="text-primary-foreground/60 hover:text-accent text-sm font-light transition-colors">Galeri</a></li>
-              <li><a href="#contact" className="text-primary-foreground/60 hover:text-accent text-sm font-light transition-colors">İletişim</a></li>
+            <ul>
+              <li><GlowLink href="#about">Hakkımızda</GlowLink></li>
+              <li><GlowLink href="#services">Hizmetlerimiz</GlowLink></li>
+              <li><GlowLink href="#values">Değerlerimiz</GlowLink></li>
+              <li><GlowLink href="#gallery">Galeri</GlowLink></li>
+              <li><GlowLink href="#contact">İletişim</GlowLink></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-serif text-lg mb-6 text-white">Hizmetler</h4>
-            <ul className="space-y-3">
-              <li><a href="#services" className="text-primary-foreground/60 hover:text-accent text-sm font-light transition-colors">Soprano Ice Lazer</a></li>
-              <li><a href="#services" className="text-primary-foreground/60 hover:text-accent text-sm font-light transition-colors">Hydrafacial Cilt Bakımı</a></li>
-              <li><a href="#services" className="text-primary-foreground/60 hover:text-accent text-sm font-light transition-colors">Medikal Peeling</a></li>
-              <li><a href="#services" className="text-primary-foreground/60 hover:text-accent text-sm font-light transition-colors">Kaş & Kirpik Tasarımı</a></li>
-              <li><a href="#services" className="text-primary-foreground/60 hover:text-accent text-sm font-light transition-colors">Saç Tasarım</a></li>
-              <li><a href="#services" className="text-primary-foreground/60 hover:text-accent text-sm font-light transition-colors">Profesyonel Makyaj</a></li>
+            <ul>
+              <li><GlowLink href="#services">Soprano Ice Lazer</GlowLink></li>
+              <li><GlowLink href="#services">Hydrafacial Cilt Bakımı</GlowLink></li>
+              <li><GlowLink href="#services">Medikal Peeling</GlowLink></li>
+              <li><GlowLink href="#services">Kaş & Kirpik Tasarımı</GlowLink></li>
+              <li><GlowLink href="#services">Saç Tasarım</GlowLink></li>
+              <li><GlowLink href="#services">Profesyonel Makyaj</GlowLink></li>
             </ul>
           </div>
 

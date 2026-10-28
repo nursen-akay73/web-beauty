@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -44,6 +44,7 @@
   --font-sans: var(--app-font-sans);
   --font-serif: var(--app-font-serif);
   --font-mono: var(--app-font-mono);
+  --font-hand: "Caveat", cursive;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -137,13 +138,18 @@
     @apply border-border;
   }
 
+  /* clip, not hidden: hidden on both html and body makes body a scroll container,
+     which stops every position: sticky element on the page from sticking.
+     hidden stays as the fallback for browsers without clip. */
   html {
     overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
     overflow-x: hidden;
+    overflow-x: clip;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -160,7 +166,10 @@
 }
 .section-fade-in.visible {
   opacity: 1;
-  transform: translateY(0);
+  /* "none", not translateY(0): any transform left on the wrapper turns it into the
+     containing block for position: fixed, and the service drawers would open inside
+     the section instead of over the screen. */
+  transform: none;
 }
 
 /* Ken Burns hero animation — zoom in */
@@ -377,4 +386,151 @@
   .story-marquee {
     animation: none;
   }
+}
+
+/* Footer links — glossy purple gel pill on hover */
+.glow-link {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  margin: 0 -1rem;
+  padding: 0.375rem 1rem;
+  border-radius: 999px;
+  color: rgba(248, 247, 248, 0.6);
+  transition: color 0.3s ease;
+}
+.glow-link > span[aria-hidden] {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.glow-link__halo {
+  inset: -3px !important;
+  z-index: -1;
+  background: linear-gradient(90deg, #6A0DAD, #B07FD8, #6A0DAD);
+  filter: blur(14px);
+}
+.glow-link__body {
+  background:
+    radial-gradient(ellipse at 50% 118%, rgba(200, 170, 230, 0.9) 0%, transparent 68%),
+    radial-gradient(ellipse at 50% -35%, rgba(255, 255, 255, 0.22), transparent 70%),
+    linear-gradient(90deg, #4A0E5C 0%, #8E4FBF 50%, #4A0E5C 100%);
+  box-shadow:
+    inset 1px 1px 2px rgba(255, 255, 255, 0.6),
+    inset 0 -5px 9px rgba(200, 170, 230, 0.55),
+    inset 0 0 0 1px rgba(212, 175, 55, 0.35);
+}
+.glow-link__spot {
+  mix-blend-mode: screen;
+  background: radial-gradient(
+    80px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    rgba(247, 231, 161, 0.55),
+    transparent 70%
+  );
+}
+.glow-link__sheen {
+  overflow: hidden;
+}
+.glow-link__sheen::before {
+  content: "";
+  position: absolute;
+  top: -55%;
+  left: 0;
+  width: 36%;
+  height: 210%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5) 48%, transparent);
+  filter: blur(6px);
+  transform: translateX(-150%) skewX(-22deg);
+}
+.glow-link:hover,
+.glow-link:focus-visible {
+  color: #fff;
+}
+.glow-link:hover > span[aria-hidden],
+.glow-link:focus-visible > span[aria-hidden] {
+  opacity: 1;
+}
+.glow-link:hover .glow-link__halo,
+.glow-link:focus-visible .glow-link__halo {
+  opacity: 0.55;
+}
+.glow-link:hover .glow-link__sheen::before,
+.glow-link:focus-visible .glow-link__sheen::before {
+  transform: translateX(380%) skewX(-22deg);
+  transition: transform 0.8s ease;
+}
+
+/* Floating AI hairstyle button — a turning gold/lilac ring around a purple pill */
+@keyframes aiHairSpin {
+  to { transform: rotate(360deg); }
+}
+@keyframes aiHairTwinkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.25) rotate(18deg); opacity: 0.75; }
+}
+@keyframes aiHairShine {
+  0%, 55% { transform: translateX(-120%) skewX(-20deg); }
+  100% { transform: translateX(320%) skewX(-20deg); }
+}
+.ai-hair-btn {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  padding: 2px;
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(59, 10, 69, 0.35), 0 0 24px rgba(212, 175, 55, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.ai-hair-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(59, 10, 69, 0.4), 0 0 34px rgba(212, 175, 55, 0.55);
+}
+.ai-hair-btn::before {
+  content: "";
+  position: absolute;
+  inset: -200%;
+  z-index: -1;
+  background: conic-gradient(from 0deg, #D4AF37, #F7E7A1, #C8AAE6, #6A0DAD, #C8AAE6, #D4AF37);
+  animation: aiHairSpin 3.5s linear infinite;
+}
+.ai-hair-btn__inner {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.1rem 0.85rem 1rem;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at 50% 120%, #6A0DAD 0%, #3B0A45 65%);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.ai-hair-btn__inner::after {
+  content: "";
+  position: absolute;
+  inset: -50% auto -50% 0;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  animation: aiHairShine 3.2s ease-in-out infinite;
+}
+.ai-hair-btn__spark {
+  color: #D4AF37;
+  animation: aiHairTwinkle 2.4s ease-in-out infinite;
+}
+.ai-hair-btn__badge {
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(212, 175, 55, 0.18);
+  color: #F7E7A1;
+  border: 1px solid rgba(212, 175, 55, 0.4);
 }

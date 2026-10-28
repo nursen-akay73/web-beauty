@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import LayeredCard from "./layered-card";
 import SkincareStory from "./skincare-story";
+import RollingStats from "./rolling-stats";
 import ServiceModal, { SERVICE_DETAILS, type ServiceDetail } from "./service-modal";
 
 const serviceCards = [
@@ -313,6 +314,7 @@ export default function Services() {
               </motion.div>
             </div>
 
+            <RollingStats />
           </div>
         </div>
 
