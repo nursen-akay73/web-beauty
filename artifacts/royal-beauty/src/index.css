@@ -378,3 +378,79 @@
     animation: none;
   }
 }
+
+/* Footer links — glossy purple gel pill on hover */
+.glow-link {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  margin: 0 -1rem;
+  padding: 0.375rem 1rem;
+  border-radius: 999px;
+  color: rgba(248, 247, 248, 0.6);
+  transition: color 0.3s ease;
+}
+.glow-link > span[aria-hidden] {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.glow-link__halo {
+  inset: -3px !important;
+  z-index: -1;
+  background: linear-gradient(90deg, #6A0DAD, #B07FD8, #6A0DAD);
+  filter: blur(14px);
+}
+.glow-link__body {
+  background:
+    radial-gradient(ellipse at 50% 118%, rgba(200, 170, 230, 0.9) 0%, transparent 68%),
+    radial-gradient(ellipse at 50% -35%, rgba(255, 255, 255, 0.22), transparent 70%),
+    linear-gradient(90deg, #4A0E5C 0%, #8E4FBF 50%, #4A0E5C 100%);
+  box-shadow:
+    inset 1px 1px 2px rgba(255, 255, 255, 0.6),
+    inset 0 -5px 9px rgba(200, 170, 230, 0.55),
+    inset 0 0 0 1px rgba(212, 175, 55, 0.35);
+}
+.glow-link__spot {
+  mix-blend-mode: screen;
+  background: radial-gradient(
+    80px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    rgba(247, 231, 161, 0.55),
+    transparent 70%
+  );
+}
+.glow-link__sheen {
+  overflow: hidden;
+}
+.glow-link__sheen::before {
+  content: "";
+  position: absolute;
+  top: -55%;
+  left: 0;
+  width: 36%;
+  height: 210%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5) 48%, transparent);
+  filter: blur(6px);
+  transform: translateX(-150%) skewX(-22deg);
+}
+.glow-link:hover,
+.glow-link:focus-visible {
+  color: #fff;
+}
+.glow-link:hover > span[aria-hidden],
+.glow-link:focus-visible > span[aria-hidden] {
+  opacity: 1;
+}
+.glow-link:hover .glow-link__halo,
+.glow-link:focus-visible .glow-link__halo {
+  opacity: 0.55;
+}
+.glow-link:hover .glow-link__sheen::before,
+.glow-link:focus-visible .glow-link__sheen::before {
+  transform: translateX(380%) skewX(-22deg);
+  transition: transform 0.8s ease;
+}
