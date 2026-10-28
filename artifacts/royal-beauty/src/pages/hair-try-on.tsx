@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Camera, ImagePlus, Loader2, ShieldCheck, Sparkles, X } from "lucide-react";
 import ParticleField from "@/components/particle-field";
+import ScrollZoomReveal from "@/components/scroll-zoom-reveal";
 import {
   HAIR_COLORS,
   HAIR_STYLES,
@@ -191,6 +192,8 @@ export default function HairTryOn() {
     void loadPicture(frame, w, h, true);
   };
 
+  const goToStudio = () => document.getElementById("studyo")?.scrollIntoView({ behavior: "smooth" });
+
   const reset = () => {
     stopCamera();
     faceRef.current = null;
@@ -255,50 +258,37 @@ export default function HairTryOn() {
             Fotoğrafını yükle ya da kamerayı aç; yapay zekâ yüzünü bulsun, farklı saç modellerini ve renklerini
             senin üzerinde göstersin. Beğendiğini seç, randevunu al.
           </p>
-          <a
-            href="#studyo"
-            className="group inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em]"
-          >
-            Stüdyoya geç
-            <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1.5" />
-          </a>
         </motion.div>
       </section>
 
-      {/* Salon hair-wash film rising in under the headline, as on lustréa.framer.website.
+      {/* "Stüdyoya [film] geç": the pill grows into the salon film as you scroll.
           Clip: Pexels video 7575399 (free to use), trimmed to a silent 12 s loop. */}
       <motion.div
-        initial={{ opacity: 0, y: 120, clipPath: "inset(12% 6% 0% 6% round 2rem)" }}
-        animate={{ opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0% round 2rem)" }}
-        transition={{ duration: 1.2, delay: 0.8, ease }}
-        className="relative mx-4 md:mx-8 mt-12 md:mt-16 h-[52vh] md:h-[70vh] overflow-hidden rounded-[2rem]"
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.8, ease }}
       >
-        <video
-          src="/videos/sac-yikama.mp4"
+        <ScrollZoomReveal
+          before="Stüdyoya"
+          after="geç"
+          video="/videos/sac-yikama.mp4"
           poster="/videos/sac-yikama-poster.jpg"
-          autoPlay
-          muted
-          loop
-          playsInline
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(to top, rgba(59,10,69,0.75) 0%, rgba(59,10,69,0.15) 45%, transparent 70%)" }}
-        />
-        <div className="absolute inset-x-6 md:inset-x-10 bottom-6 md:bottom-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4 text-white">
-          <p className="font-serif text-2xl md:text-4xl leading-tight max-w-lg">
-            Salonda uzman eller, <span className="italic" style={{ color: "#D4AF37" }}>evde yapay zekâ.</span>
-          </p>
-          <a
-            href="#studyo"
-            className="inline-flex items-center gap-2 self-start md:self-auto rounded-full px-6 h-12 text-sm font-medium"
-            style={{ backgroundColor: "#D4AF37", color: "#3B0A45" }}
-          >
-            Hemen dene <ArrowRight size={16} />
-          </a>
-        </div>
+          onPillClick={goToStudio}
+        >
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 text-white">
+            <p className="font-serif text-2xl md:text-4xl leading-tight max-w-lg">
+              Salonda uzman eller, <span className="italic" style={{ color: "#D4AF37" }}>evde yapay zekâ.</span>
+            </p>
+            <button
+              type="button"
+              onClick={goToStudio}
+              className="inline-flex items-center gap-2 self-start md:self-auto rounded-full px-6 h-12 text-sm font-medium"
+              style={{ backgroundColor: "#D4AF37", color: "#3B0A45" }}
+            >
+              Hemen dene <ArrowRight size={16} />
+            </button>
+          </div>
+        </ScrollZoomReveal>
       </motion.div>
 
       <motion.section
