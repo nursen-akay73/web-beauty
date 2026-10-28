@@ -206,6 +206,42 @@ interface ServiceModalProps {
   onBook: () => void;
 }
 
+/** A polaroid that springs up into place, then lifts and straightens on hover. */
+function Snapshot({
+  src,
+  alt,
+  caption,
+  className,
+  rotate,
+  delay,
+}: {
+  src: string;
+  alt: string;
+  caption: string;
+  className: string;
+  rotate: number;
+  delay: number;
+}) {
+  return (
+    <motion.figure
+      initial={{ y: 520, rotate: 0 }}
+      animate={{ y: 0, rotate }}
+      exit={{ y: 520 }}
+      whileHover={{ y: -22, rotate: rotate * 0.35, scale: 1.03, zIndex: 20 }}
+      transition={{ type: "spring", stiffness: 170, damping: 17, delay }}
+      className={`absolute p-2.5 pb-11 ${className}`}
+      style={{ backgroundColor: "#FBF8FC", boxShadow: "0 22px 50px rgba(0,0,0,0.5)" }}
+    >
+      <img src={src} alt={alt} className="block aspect-[4/5] w-full object-cover" />
+      {caption && (
+        <figcaption className="absolute bottom-2 left-0 right-0 text-center font-hand text-2xl" style={{ color: "#3B0A45" }}>
+          {caption}
+        </figcaption>
+      )}
+    </motion.figure>
+  );
+}
+
 export default function ServiceModal({ service, onClose, onBook }: ServiceModalProps) {
   useEffect(() => {
     document.body.style.overflow = service ? "hidden" : "";
@@ -250,103 +286,60 @@ export default function ServiceModal({ service, onClose, onBook }: ServiceModalP
             {/* Background tint */}
             <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, rgba(106,13,173,0.2) 0%, transparent 70%)" }} />
 
-            {/* Staircase image frames */}
-            <div className="relative w-full h-full flex items-center justify-center">
-              {/* Frame 3 — bottom-right (furthest back) */}
-              <motion.div
-                initial={{ opacity: 0, x: 30, y: 30 }}
-                animate={{ opacity: 0.3, x: 24, y: 24 }}
-                transition={{ delay: 0.05, duration: 0.7, ease: "easeOut" }}
-                className="absolute overflow-hidden"
-                style={{ width: "72%", height: "62%", border: "1px solid rgba(212,175,55,0.2)" }}
-              >
-                <img src={service.leftImage} alt="" className="w-full h-full object-cover" style={{ filter: "brightness(0.4) saturate(0.6)" }} />
-              </motion.div>
-
-              {/* Frame 2 — middle */}
-              <motion.div
-                initial={{ opacity: 0, x: 15, y: 15 }}
-                animate={{ opacity: 0.6, x: 12, y: 12 }}
-                transition={{ delay: 0.15, duration: 0.7, ease: "easeOut" }}
-                className="absolute overflow-hidden"
-                style={{ width: "72%", height: "62%", border: "1px solid rgba(212,175,55,0.35)" }}
-              >
-                <img src={service.leftImage} alt="" className="w-full h-full object-cover" style={{ filter: "brightness(0.55) saturate(0.75)" }} />
-              </motion.div>
-
-              {/* Frame 1 — front (main image) */}
-              <motion.div
-                initial={{ opacity: 0, x: 0, y: 0, scale: 0.95 }}
-                animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-                transition={{ delay: 0.25, duration: 0.8, ease: "easeOut" }}
-                className="absolute overflow-hidden"
-                style={{ width: "72%", height: "62%", border: "2px solid rgba(212,175,55,0.6)" }}
-              >
-                <motion.img
-                  src={service.leftImage}
-                  alt={service.name}
-                  className="w-full h-full object-cover"
-                  initial={{ scale: 1.08 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.25, duration: 1.2, ease: "easeOut" }}
-                  style={{ filter: "brightness(0.7) saturate(0.9)" }}
-                />
-                {/* Subtle overlay */}
-                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(59,10,69,0.55) 0%, transparent 55%)" }} />
-              </motion.div>
-
-              {/* Gold corner accents */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.55, duration: 0.5 }}
-                className="absolute"
-                style={{ width: "72%", height: "62%" }}
-              >
-                {/* Top-left corner */}
-                <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2" style={{ borderColor: "#D4AF37" }} />
-                {/* Bottom-right corner */}
-                <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2" style={{ borderColor: "#D4AF37" }} />
-              </motion.div>
-
-              {/* Bottom — service name + tags */}
-              <motion.div
-                initial={{ opacity: 0, y: 14 }}
+            {/* Snapshot cards: two polaroids and a handwritten note spring up from the
+                bottom of the panel and settle at a tilt, after snapshotfooter.framer.website. */}
+            <div className="relative w-full h-full">
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.45, duration: 0.5 }}
-                className="absolute bottom-0 left-0 right-0 px-6 pb-7"
-                style={{ background: "linear-gradient(to top, rgba(10,2,20,0.85) 0%, transparent 100%)" }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+                className="absolute top-10 left-0 right-0 text-center text-[10px] uppercase tracking-[0.4em]"
+                style={{ color: "#D4AF37" }}
               >
-                <p className="text-[9px] uppercase tracking-[0.4em] mb-1" style={{ color: "#D4AF37" }}>Royal Güzellik</p>
-                <p className="font-serif text-white/90 text-base mb-3">{service.name}</p>
-                <div className="flex flex-col gap-1.5">
-                  {service.leftTags.map((tag, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.52 + i * 0.08, duration: 0.4 }}
-                      className="flex items-center gap-2"
-                    >
-                      <div className="w-1 h-1 rotate-45 shrink-0" style={{ backgroundColor: "#D4AF37" }} />
-                      <span className="text-[11px] font-light tracking-wide" style={{ color: "rgba(245,245,245,0.82)" }}>{tag}</span>
-                    </motion.div>
+                Royal Güzellik
+              </motion.p>
+
+              <Snapshot
+                src={service.image}
+                alt=""
+                caption=""
+                className="left-[8%] top-[20%] w-[46%]"
+                rotate={-8}
+                delay={0.22}
+              />
+              <Snapshot
+                src={service.leftImage}
+                alt={service.name}
+                caption={service.name}
+                className="right-[7%] top-[27%] w-[50%]"
+                rotate={5}
+                delay={0.34}
+              />
+
+              <motion.div
+                initial={{ y: 520, rotate: 0 }}
+                animate={{ y: 0, rotate: -4 }}
+                exit={{ y: 520 }}
+                whileHover={{ y: -14, rotate: -1.5 }}
+                transition={{ type: "spring", stiffness: 170, damping: 17, delay: 0.46 }}
+                className="absolute left-[10%] bottom-[7%] w-[46%] px-5 pt-7 pb-5 z-10"
+                style={{
+                  backgroundColor: "#24102f",
+                  border: "1px solid rgba(212,175,55,0.25)",
+                  boxShadow: "0 18px 40px rgba(0,0,0,0.45)",
+                }}
+              >
+                {/* Punched holes along the top of the note */}
+                <div className="absolute top-2.5 left-4 right-4 flex justify-between">
+                  {Array.from({ length: 9 }).map((_, i) => (
+                    <span key={i} className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "#12061a" }} />
                   ))}
                 </div>
-              </motion.div>
-
-              {/* Top diamond line */}
-              <motion.div
-                initial={{ opacity: 0, scaleX: 0 }}
-                animate={{ opacity: 1, scaleX: 1 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-                className="absolute top-8 left-0 right-0 flex justify-center"
-              >
-                <div className="flex items-center gap-2">
-                  <div className="h-[1px] w-6" style={{ backgroundColor: "rgba(212,175,55,0.35)" }} />
-                  <div className="w-1.5 h-1.5 rotate-45" style={{ backgroundColor: "#D4AF37" }} />
-                  <div className="h-[1px] w-6" style={{ backgroundColor: "rgba(212,175,55,0.35)" }} />
-                </div>
+                {service.leftTags.map((tag) => (
+                  <p key={tag} className="font-hand text-xl leading-snug" style={{ color: "rgba(247,231,161,0.92)" }}>
+                    {tag}
+                  </p>
+                ))}
               </motion.div>
             </div>
           </motion.div>
@@ -372,9 +365,9 @@ export default function ServiceModal({ service, onClose, onBook }: ServiceModalP
                 src={service.image}
                 alt={service.name}
                 className="w-full h-full object-cover"
-                initial={{ scale: 1.1 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 1.1, ease: "easeOut" }}
+                initial={{ scale: 1.18, y: 60, rotate: -3 }}
+                animate={{ scale: 1.04, y: 0, rotate: 0 }}
+                transition={{ type: "spring", stiffness: 140, damping: 16, delay: 0.1 }}
                 style={{ filter: "brightness(0.55) saturate(0.85)" }}
               />
               {/* Bottom gradient fade into drawer bg */}
